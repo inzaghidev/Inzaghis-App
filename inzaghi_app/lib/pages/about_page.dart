@@ -1,7 +1,7 @@
 // about_page.dart
 import 'package:flutter/material.dart';
 
-class InzaghisGroup extends StatelessWidget {
+class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,11 +19,18 @@ class InzaghisGroup extends StatelessWidget {
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 20),
+            Image.asset(
+              'assets/images/inzaghis-app-logo-vertical-transparent.png',
+              width: 200,
+              height: 80,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 20),
             Text(
-              "Inzaghi's App merupakan Aplikasi Konten-konten yang menyajikan apapun dengan Tampilan Versi Mobile dari Inzaghi's Sites, seperti Inzaghi's Blog, Inzaghi's Media, dan Inzaghi's Group. Nantinya, Inzaghi's App akan tersedia dalam Versi Android.",
+              "Inzaghi's App merupakan Aplikasi Konten-konten yang menyajikan apapun dengan Tampilan Versi Mobile dari Inzaghi's Sites, seperti Inzaghi's Blog, Inzaghi's Media, dan Inzaghi's Group. Nantinya, Inzaghi's App akan tersedia dalam Versi Android dan iOS.",
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 60),
+            SizedBox(height: 40),
             Image.asset(
               'assets/images/inzaghis-app-by-inzaghis-group-corp.png',
               width: 350,
