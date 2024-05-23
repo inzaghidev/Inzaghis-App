@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavBar extends StatelessWidget {
   final int selectedIndex;
@@ -23,6 +24,10 @@ class NavBar extends StatelessWidget {
           icon: Icon(Icons.apps),
           label: 'Apps',
         ),
+        //BottomNavigationBarItem(
+        //  icon: Icon(FontAwesomeIcons.pencil),
+        //  label: 'Posts',
+        //),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
           label: 'Settings',

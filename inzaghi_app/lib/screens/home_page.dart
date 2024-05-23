@@ -58,12 +58,12 @@ class _HomePageState extends State<HomePage> {
                 child: Text('About'),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/apps');
-                },
-                child: Text('Apps'),
-              ),
+              //ElevatedButton(
+              //  onPressed: () {
+              //    Navigator.pushNamed(context, '/apps');
+              //  },
+              //  child: Text('Apps'),
+              //),
             ],
           ),
         ),

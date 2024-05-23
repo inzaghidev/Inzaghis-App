@@ -1,13 +1,166 @@
 import 'package:flutter/material.dart';
+import 'package:inzaghi_app/widgets/button_cards.dart';
 import 'package:inzaghi_app/widgets/navbar.dart';
 
-class AppsPage extends StatelessWidget {
+class ConvertersPage extends StatelessWidget {
+  final ButtonCards buttonCards = ButtonCards();
+
+  final List<dynamic> iconConvList = [
+    'assets/icons/length.png',
+    'assets/icons/weight.png',
+    Icons.area_chart,
+    'assets/icons/volume-cup.png',
+    Icons.access_time_filled_sharp,
+    Icons.speed,
+    Icons.thermostat_rounded,
+    Icons.currency_yen_sharp,
+    Icons.currency_bitcoin,
+    'assets/icons/pressure.png',
+    'assets/icons/force-physics.png',
+    Icons.power,
+    'assets/icons/fuel-pump-icon.png',
+    Icons.energy_savings_leaf_outlined,
+    'assets/icons/angle-icon.png',
+    Icons.electrical_services,
+    'assets/icons/data-storage-icon.png',
+    'assets/icons/number-system-binary.png',
+  ];
+
+  final List<String> titleConvList = [
+    'Length',
+    'Weight',
+    'Area',
+    'Volume',
+    'Time',
+    'Speed',
+    'Temperature',
+    'Currency',
+    'Cryptocurrency',
+    'Pressure',
+    'Force',
+    'Power',
+    'Fuel Consumption',
+    'Energy',
+    'Angle',
+    'Electricity',
+    'Data Storage',
+    'Number System',
+  ];
+
+  final List<String> routeConvList = [
+    '/length-conv',
+    '/weight-conv',
+    '/area-conv',
+    '/volume-conv',
+    '/time-conv',
+    '/speed-conv',
+    '/temperature-conv',
+    '/currency-conv',
+    '/cryptocurrency-conv',
+    '/pressure-conv',
+    '/force-conv',
+    '/power-conv',
+    '/fuel-conv',
+    '/energy-conv',
+    '/angle-conv',
+    '/electricity-conv',
+    '/storagedata-conv',
+    '/numbersystem-conv',
+  ];
+
+  final List<dynamic> iconEngerConvList = [
+    'assets/icons/velocity.png',
+    Icons.abc,
+    Icons.density_small,
+    Icons.abc,
+  ];
+
+  final List<String> titleEngerConvList = [
+    'Velocity',
+    'Acceleration',
+    'Density',
+    'Moment Inertia',
+  ];
+
+  final List<String> routeEngerConvList = [
+    '/velocity-conv',
+    '/acceleration-conv',
+    '/density-conv',
+    '/momentinertia-conv',
+  ];
+
+  final List<dynamic> iconElectryConvList = [
+    Icons.battery_charging_full_rounded,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+  ];
+
+  final List<String> titleElectryConvList = [
+    'Charge',
+    'Linear Charge Density',
+    'Surface Charge Density',
+    'Volume Charge Density',
+    'App',
+    'App',
+    'App',
+    'App',
+    'App',
+    'App',
+    'App',
+    'App',
+  ];
+
+  final List<String> routeElectryConvList = [
+    '/charge-conv',
+    '/linchargdenst-conv',
+    '/surchargdenst-conv',
+    '/volchargdenst-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+  ];
+
+  final List<dynamic> iconFluidConvList = [
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+  ];
+
+  final List<String> titleFluidConvList = [
+    'App',
+    'App',
+    'App',
+    'App',
+  ];
+
+  final List<String> routeFluidConvList = [
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Apps'),
+        title: const Text('Converters'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -37,7 +190,7 @@ class AppsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Widgets',
+                        'Basic Converters',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -48,14 +201,14 @@ class AppsPage extends StatelessWidget {
                         alignment: WrapAlignment.start,
                         spacing: 10,
                         runSpacing: 10,
-                        children: [
-                          buildAppCard(context, Icons.calendar_month_outlined,
-                              'Calendar System'),
-                          buildAppCard(context, Icons.access_time_rounded,
-                              'Clock & Time'),
-                          buildAppCard(context, Icons.cloud, 'Weather'),
-                          buildAppCard(context, Icons.currency_pound, 'Stocks'),
-                        ],
+                        children: List.generate(iconConvList.length, (index) {
+                          return buttonCards.buildCardWithImagesIcon(
+                            context,
+                            iconConvList[index],
+                            titleConvList[index],
+                            routeConvList[index],
+                          );
+                        }),
                       ),
                       const SizedBox(height: 10),
                     ],
@@ -76,7 +229,7 @@ class AppsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Converters',
+                        'Engineering Converters',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -87,25 +240,16 @@ class AppsPage extends StatelessWidget {
                         alignment: WrapAlignment.start,
                         spacing: 10,
                         runSpacing: 10,
-                        children: [
-                          buildCardImages(
-                              context, 'assets/icons/length.png', 'Length'),
-                          buildCardImages(
-                              context, 'assets/icons/weight.png', 'Weight'),
-                          buildCardImages(
-                              context, 'assets/icons/volume-cup.png', 'Volume'),
-                          buildAppCard(context, Icons.area_chart, 'Area'),
-                          buildAppCard(
-                              context, Icons.access_time_filled_sharp, 'Time'),
-                          buildAppCard(
-                              context, Icons.thermostat_rounded, 'Temperature'),
-                          buildAppCard(context, Icons.speed, 'Speed'),
-                          buildAppCard(
-                              context, Icons.currency_yen_sharp, 'Currency'),
-                        ],
+                        children:
+                            List.generate(iconEngerConvList.length, (index) {
+                          return buttonCards.buildCardWithImagesIcon(
+                            context,
+                            iconEngerConvList[index],
+                            titleEngerConvList[index],
+                            routeEngerConvList[index],
+                          );
+                        }),
                       ),
-                      const SizedBox(height: 20),
-                      buildButton(context, 'View All', '/converters.dart'),
                       const SizedBox(height: 10),
                     ],
                   ),
@@ -125,7 +269,7 @@ class AppsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Calculators',
+                        'Electricity Converters',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -136,24 +280,83 @@ class AppsPage extends StatelessWidget {
                         alignment: WrapAlignment.start,
                         spacing: 10,
                         runSpacing: 10,
-                        children: [
-                          buildAppCard(context, Icons.calculate, 'Standard'),
-                          buildAppCard(context, Icons.science, 'Scientific'),
-                          buildCardImages(context,
-                              'assets/icons/fraction-half.png', 'Fraction'),
-                          buildAppCard(context, Icons.percent, 'Modulus'),
-                          buildAppCard(
-                              context, Icons.abc, 'Mean, Mode, Median'),
-                          buildAppCard(context, Icons.percent, 'Percentages'),
-                          buildCardImages(context,
-                              'assets/icons/investment.png', 'Investment'),
-                          buildCardImages(
-                              context, 'assets/icons/bmi.png', 'BMI Calc'),
-                        ],
+                        children:
+                            List.generate(iconElectryConvList.length, (index) {
+                          return buttonCards.buildCardWithImagesIcon(
+                            context,
+                            iconElectryConvList[index],
+                            titleElectryConvList[index],
+                            routeElectryConvList[index],
+                          );
+                        }),
                       ),
-                      const SizedBox(height: 20),
-                      buildButton(context, 'View All', '/calculators'),
                       const SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              Card(
+                margin: const EdgeInsets.all(10),
+                color: Colors.white54,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  margin: const EdgeInsets.only(
+                      left: 10, right: 10, top: 10, bottom: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Fluid Converters',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: 10,
+                        runSpacing: 10,
+                        children:
+                            List.generate(iconFluidConvList.length, (index) {
+                          return buttonCards.buildCardWithImagesIcon(
+                            context,
+                            iconFluidConvList[index],
+                            titleFluidConvList[index],
+                            routeFluidConvList[index],
+                          );
+                        }),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              Card(
+                margin: const EdgeInsets.all(10),
+                color: Colors.white54,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  margin: const EdgeInsets.only(
+                      left: 10, right: 10, top: 10, bottom: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Heat Converters',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      // Add widgets or cards for advanced converters here
                     ],
                   ),
                 ),
@@ -170,76 +373,6 @@ class AppsPage extends StatelessWidget {
           Navigator.pushNamed(context, routes[value]);
         },
       ),
-    );
-  }
-
-  Widget buildAppCard(BuildContext context, IconData icon, String title) {
-    return Card(
-      margin: const EdgeInsets.all(2),
-      elevation: 2,
-      color: Colors.lightBlue[100],
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.2,
-        height: 80,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon),
-              const SizedBox(height: 10),
-              Text(title, textAlign: TextAlign.center),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildCardImages(BuildContext context, String imagePath, String title) {
-    return Card(
-      margin: const EdgeInsets.all(2),
-      elevation: 2,
-      color: Colors.lightBlue[100],
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.2,
-        height: 80,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                imagePath,
-                width: 24, // Set the width of the image
-                height: 24, // Set the height of the image
-              ),
-              const SizedBox(height: 10),
-              Text(title, textAlign: TextAlign.center),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildButton(BuildContext context, String label, String route) {
-    return ElevatedButton(
-      child: Text(label),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.grey,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-      onPressed: () {
-        Navigator.pushNamed(context, route);
-      },
     );
   }
 }
