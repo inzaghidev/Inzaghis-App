@@ -7,8 +7,32 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> pressures = [];
-const List<String> pressuresAbr = [];
+const List<String> pressures = [
+  'Micropascal (µPa)',
+  'Milipascal (mPa)',
+  'Pascal (Pa)',
+  'Kilopascal (kPa)',
+  'Megapascal (MPa)',
+  'Gigapascal (GPa)',
+  'Terapascal (TPa)',
+  'Atmosphere (atm)',
+  'Bar',
+  'Psi',
+  'Ksi',
+];
+const List<String> pressuresAbr = [
+  'µPa',
+  'mPa',
+  'Pa',
+  'kPa',
+  'MPa',
+  'GPa',
+  'TPa',
+  'atm',
+  'bar',
+  'psi',
+  'ksi',
+];
 
 class PressureConv extends StatefulWidget {
   const PressureConv({super.key});
@@ -18,11 +42,19 @@ class PressureConv extends StatefulWidget {
 }
 
 class _PressureConvState extends State<PressureConv> {
-  String? selpressureFrom = ' ()';
-  String? selpressureTo = ' ()';
+  String? selpressureFrom = 'Pascal (Pa)';
+  String? selpressureTo = 'Kilopascal (kPa)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
+
+  void convert() {
+    // Implement conversion logic here
+    // For demonstration, we just set the output to the same as input
+    setState(() {
+      outputValueController.text = inputValueController.text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,20 +148,83 @@ class _PressureConvState extends State<PressureConv> {
                 }).toList(),
               ),
               const SizedBox(height: 20.0),
-              TextField(
-                controller: inputValueController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Input Nilai',
-                ),
-                keyboardType: TextInputType.number,
+              Row(
+                children: [
+                  Expanded(
+                    flex: 17, // 85% width
+                    child: TextField(
+                      controller: inputValueController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Input Nilai',
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 3, // 15% width
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60, // Match height of the TextField
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        pressuresAbr[pressures.indexOf(selpressureFrom!)],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {
-                  // Implement conversion logic here
-                },
+                onPressed: convert,
                 child: const Text('Convert'),
+              ),
+              const SizedBox(height: 40.0),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 17, // 85% width
+                    child: TextField(
+                      controller: outputValueController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Hasil Output',
+                      ),
+                      keyboardType: TextInputType.number,
+                      enabled: false, // Disable the text field
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 3, // 15% width
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60, // Match height of the TextField
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        pressuresAbr[pressures.indexOf(selpressureTo!)],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

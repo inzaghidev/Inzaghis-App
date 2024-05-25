@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class IconLabel {
   final String label;
@@ -10,6 +12,7 @@ class IconLabel {
 const List<String> currency = [
   'US Dollar (USD)',
   'Euro (EUR)',
+  'UK Poundsterling (GBP)',
   'Japanese Yen (JPY)',
   'Chinese Yuan (CNY)',
   'South Korean Won (KRW)',
@@ -18,15 +21,18 @@ const List<String> currency = [
   'Malaysian Ringgit (MYR)',
   'Indian Rupee (INR)',
 ];
+
 const List<String> currencyAbr = [
   'USD',
   'EUR',
+  'GBP',
   'JPY',
+  'CNY',
   'KRW',
   'IDR',
   'SGD',
   'MYR',
-  'INR'
+  'INR',
 ];
 
 class CurrencyConv extends StatefulWidget {
@@ -43,12 +49,43 @@ class _CurrencyConvState extends State<CurrencyConv> {
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
 
+  Map<String, double> exchangeRates = {};
+
+  @override
+  void initState() {
+    super.initState();
+    fetchExchangeRates();
+  }
+
+  Future<void> fetchExchangeRates() async {
+    final response =
+        await http.get(Uri.parse('https://open.er-api.com/v6/latest/USD'));
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      setState(() {
+        exchangeRates = Map<String, double>.from(data['rates']);
+      });
+    } else {
+      throw Exception('Failed to load exchange rates');
+    }
+  }
+
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
-    setState(() {
-      outputValueController.text = inputValueController.text;
-    });
+    final inputAmount = double.tryParse(inputValueController.text) ?? 0;
+    final fromCurrency = currencyAbr[currency.indexOf(selcurrencyFrom!)];
+    final toCurrency = currencyAbr[currency.indexOf(selcurrencyTo!)];
+
+    if (exchangeRates.isNotEmpty) {
+      final fromRate = exchangeRates[fromCurrency] ?? 1;
+      final toRate = exchangeRates[toCurrency] ?? 1;
+
+      final convertedAmount = inputAmount * toRate / fromRate;
+
+      setState(() {
+        outputValueController.text = convertedAmount.toStringAsFixed(2);
+      });
+    }
   }
 
   @override

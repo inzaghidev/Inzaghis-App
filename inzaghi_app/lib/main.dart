@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inzaghi_app/screens/home_page.dart';
-import 'package:inzaghi_app/pages/about_page.dart';
+import 'package:inzaghi_app/settings/about_page.dart';
 import 'package:inzaghi_app/pages/apps_page.dart';
 import 'package:inzaghi_app/pages/settings_page.dart';
+import 'package:inzaghi_app/settings/profile.dart';
+
 //=============================================================
 //Basic Converters :
 import 'package:inzaghi_app/pages/converters.dart';
@@ -28,14 +30,18 @@ import 'package:inzaghi_app/pages/converters/numbersystem-conv.dart';
 //Engineering Converters :
 import 'package:inzaghi_app/pages/converters/velocity-conv.dart';
 import 'package:inzaghi_app/pages/converters/acceleration-conv.dart';
-//import 'package:inzaghi_app/pages/converters/density-conv.dart';
-//import 'package:inzaghi_app/pages/converters/momentinertia-conv.dart';
+import 'package:inzaghi_app/pages/converters/density-conv.dart';
+import 'package:inzaghi_app/pages/converters/momentinertia-conv.dart';
 
 //Electricity Converters :
-//import 'package:inzaghi_app/pages/converters/charge-conv.dart';
+import 'package:inzaghi_app/pages/converters/charge-conv.dart';
 //import 'package:inzaghi_app/pages/converters/linchargdenst-conv.dart';
 //import 'package:inzaghi_app/pages/converters/surchargdenst-conv.dart';
 //import 'package:inzaghi_app/pages/converters/volchargdenst-conv.dart';
+import 'package:inzaghi_app/pages/converters/current-conv.dart';
+//import 'package:inzaghi_app/pages/converters/lincurrdenst-conv.dart';
+//import 'package:inzaghi_app/pages/converters/surcurrdenst-conv.dart';
+//import 'package:inzaghi_app/pages/converters/volcurrdenst-conv.dart';
 
 //=============================================================
 import 'package:inzaghi_app/pages/calculators.dart';
@@ -58,6 +64,7 @@ class MyApp extends StatelessWidget {
         '/settings': (context) => SettingsPage(),
         '/converters': (context) => ConvertersPage(),
         '/calculators': (context) => CalculatorsPage(),
+        '/profile': (context) => ProfilePage(),
 
         //======================================================
 
@@ -84,14 +91,18 @@ class MyApp extends StatelessWidget {
         //Engineering Converters :
         '/velocity-conv': (context) => VelocityConv(),
         '/acceleration-conv': (context) => AccelerationConv(),
-        //'/density-conv': (context) => DensityConv(),
-        //'/momentinertia-conv': (context) => MomentInertiaConv(),
+        '/density-conv': (context) => DensityConv(),
+        '/momentinertia-conv': (context) => MomentInertiaConv(),
 
         //Electricity Converters :
-        //'/charge-conv': (context) => ChargeConv(),
+        '/charge-conv': (context) => ChargeConv(),
         //'/linchargdenst-conv': (context) => LinearChargeDensityConv();
         //'/surchargdenst-conv': (context) => SurfaceChargeDensityConv();
         //'/volchargdenst-conv': (context) => VolumeChargeDensityConv();
+        '/current-conv': (context) => CurrentConv(),
+        //'/lincurrdenst-conv': (context) => LinearCurrentDensityConv();
+        //'/surcurrdenst-conv': (context) => SurfaceCurrentDensityConv();
+        //'/volcurrdenst-conv': (context) => VolumeCurrentDensityConv();
 
         //======================================================
 

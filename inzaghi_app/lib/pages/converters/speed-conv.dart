@@ -7,8 +7,77 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> speed = ['Meter/Second (m/s)', 'Kilometer/Hour (km/h)'];
-const List<String> speedAbr = ['m/s', 'km/h'];
+const List<String> speedUnits = [
+  'Millimeter/Second (mm/s)',
+  'Millimeter/Minute (mm/min)',
+  'Millimeter/Hour (mm/h)',
+  'Centimeter/Second (cm/s)',
+  'Centimeter/Minute (cm/min)',
+  'Centimeter/Hour (cm/h)',
+  'Meter/Second (m/s)',
+  'Meter/Minute (m/min)',
+  'Meter/Hour (m/h)',
+  'Kilometer/Second (km/s)',
+  'Kilometer/Minute (km/min)',
+  'Kilometer/Hour (km/h)',
+  'Foot/Second (ft/s)',
+  'Foot/Minute (ft/min)',
+  'Foot/Hour (ft/h)',
+  'Yard/Second (yd/s)',
+  'Yard/Minute (yd/min)',
+  'Yard/Hour (yd/h)',
+  'Mile/Second (mi/s)',
+  'Mile/Minute (mi/min)',
+  'Mile/Hour (mi/h)',
+];
+
+const List<String> speedUnitsAbr = [
+  'mm/s',
+  'mm/min',
+  'mm/h',
+  'cm/s',
+  'cm/min',
+  'cm/h',
+  'm/s',
+  'm/min',
+  'm/h',
+  'km/s',
+  'km/min',
+  'km/h',
+  'ft/s',
+  'ft/min',
+  'ft/h',
+  'yd/s',
+  'yd/min',
+  'yd/h',
+  'mi/s',
+  'mi/min',
+  'mi/h',
+];
+
+const Map<String, double> speedConversionFactors = {
+  'Millimeter/Second (mm/s)': 0.001,
+  'Millimeter/Minute (mm/min)': 0.001 / 60,
+  'Millimeter/Hour (mm/h)': 0.001 / 3600,
+  'Centimeter/Second (cm/s)': 0.01,
+  'Centimeter/Minute (cm/min)': 0.01 / 60,
+  'Centimeter/Hour (cm/h)': 0.01 / 3600,
+  'Meter/Second (m/s)': 1,
+  'Meter/Minute (m/min)': 1 / 60,
+  'Meter/Hour (m/h)': 1 / 3600,
+  'Kilometer/Second (km/s)': 1000,
+  'Kilometer/Minute (km/min)': 1000 / 60,
+  'Kilometer/Hour (km/h)': 1000 / 3600,
+  'Foot/Second (ft/s)': 0.3048,
+  'Foot/Minute (ft/min)': 0.3048 / 60,
+  'Foot/Hour (ft/h)': 0.3048 / 3600,
+  'Yard/Second (yd/s)': 0.9144,
+  'Yard/Minute (yd/min)': 0.9144 / 60,
+  'Yard/Hour (yd/h)': 0.9144 / 3600,
+  'Mile/Second (mi/s)': 1609.34,
+  'Mile/Minute (mi/min)': 1609.34 / 60,
+  'Mile/Hour (mi/h)': 1609.34 / 3600,
+};
 
 class SpeedConv extends StatefulWidget {
   const SpeedConv({super.key});
@@ -18,17 +87,20 @@ class SpeedConv extends StatefulWidget {
 }
 
 class _SpeedConvState extends State<SpeedConv> {
-  String? selspeedFrom = 'Kilometer/Hour (km/h)';
-  String? selspeedTo = 'Meter/Second (m/s)';
+  String? selspeedFrom = 'Meter/Second (m/s)';
+  String? selspeedTo = 'Kilometer/Hour (km/h)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
 
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
+    double input = double.tryParse(inputValueController.text) ?? 0.0;
+    double factorFrom = speedConversionFactors[selspeedFrom!]!;
+    double factorTo = speedConversionFactors[selspeedTo!]!;
+    double result = input * (factorFrom / factorTo);
+
     setState(() {
-      outputValueController.text = inputValueController.text;
+      outputValueController.text = result.toString();
     });
   }
 
@@ -83,7 +155,7 @@ class _SpeedConvState extends State<SpeedConv> {
                     selspeedFrom = newValue;
                   });
                 },
-                items: speed.map<DropdownMenuItem<String>>((String value) {
+                items: speedUnits.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -116,7 +188,7 @@ class _SpeedConvState extends State<SpeedConv> {
                     selspeedTo = newValue;
                   });
                 },
-                items: speed.map<DropdownMenuItem<String>>((String value) {
+                items: speedUnits.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -148,7 +220,7 @@ class _SpeedConvState extends State<SpeedConv> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
-                        speedAbr[speed.indexOf(selspeedFrom!)],
+                        speedUnitsAbr[speedUnits.indexOf(selspeedFrom!)],
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -191,7 +263,7 @@ class _SpeedConvState extends State<SpeedConv> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
-                        speedAbr[speed.indexOf(selspeedTo!)],
+                        speedUnitsAbr[speedUnits.indexOf(selspeedTo!)],
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,

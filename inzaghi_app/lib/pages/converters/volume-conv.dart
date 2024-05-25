@@ -7,8 +7,38 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> volumes = ['Milliliter (ml)', 'Liter (l)'];
-const List<String> volumesAbr = ['ml', 'l'];
+const List<String> volumes = [
+  'Milliliter (ml)',
+  'Liter (l)',
+  'Cubic Millimeter (mm^3)',
+  'Cubic Centimeter (cm^3)',
+  'Cubic Decimeter (dm^3)',
+  'Cubic Meter (m^3)',
+  'Cubic Dekameter (dam^3)',
+  'Cubic Kilometer (km^3)',
+];
+
+const List<String> volumesAbr = [
+  'ml',
+  'l',
+  'mm^3',
+  'cm^3',
+  'dm^3',
+  'm^3',
+  'dam^3',
+  'km^3',
+];
+
+const Map<String, double> volumeConversionFactors = {
+  'Milliliter (ml)': 1e-6,
+  'Liter (l)': 1e-3,
+  'Cubic Millimeter (mm^3)': 1e-9,
+  'Cubic Centimeter (cm^3)': 1e-6,
+  'Cubic Decimeter (dm^3)': 1e-3,
+  'Cubic Meter (m^3)': 1.0,
+  'Cubic Dekameter (dam^3)': 1e3,
+  'Cubic Kilometer (km^3)': 1e9,
+};
 
 class VolumeConv extends StatefulWidget {
   const VolumeConv({super.key});
@@ -25,10 +55,13 @@ class _VolumeConvState extends State<VolumeConv> {
   final TextEditingController outputValueController = TextEditingController();
 
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
+    double input = double.tryParse(inputValueController.text) ?? 0.0;
+    double factorFrom = volumeConversionFactors[selvolumeFrom!]!;
+    double factorTo = volumeConversionFactors[selvolumeTo!]!;
+    double result = input * (factorFrom / factorTo);
+
     setState(() {
-      outputValueController.text = inputValueController.text;
+      outputValueController.text = result.toString();
     });
   }
 

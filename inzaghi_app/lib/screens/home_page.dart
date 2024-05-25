@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inzaghi_app/pages/about_page.dart';
+import 'package:inzaghi_app/settings/about_page.dart';
 import 'package:inzaghi_app/pages/apps_page.dart';
 import 'package:inzaghi_app/widgets/navbar.dart';
 
@@ -51,19 +51,6 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.cover,
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/about');
-                },
-                child: Text('About'),
-              ),
-              SizedBox(height: 20),
-              //ElevatedButton(
-              //  onPressed: () {
-              //    Navigator.pushNamed(context, '/apps');
-              //  },
-              //  child: Text('Apps'),
-              //),
             ],
           ),
         ),

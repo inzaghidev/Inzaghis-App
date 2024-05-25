@@ -7,8 +7,18 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> energy = [];
-const List<String> energyAbr = [];
+const List<String> energy = [
+  'Joule (J)',
+  'Kilojoule (kJ)',
+  'Watt-Hour (W*h)',
+  'Calorie (cal)',
+];
+const List<String> energyAbr = [
+  'J',
+  'kJ',
+  'W*h',
+  'cal',
+];
 
 class EnergyConv extends StatefulWidget {
   const EnergyConv({super.key});
@@ -18,11 +28,32 @@ class EnergyConv extends StatefulWidget {
 }
 
 class _EnergyConvState extends State<EnergyConv> {
-  String? selenergyFrom = ' ()';
-  String? selenergyTo = ' ()';
+  String? selenergyFrom = 'Joule (J)';
+  String? selenergyTo = 'Kilojoule (kJ)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
+
+  void convert() {
+    // Implement conversion logic here
+    double? inputValue = double.tryParse(inputValueController.text);
+    if (inputValue == null) {
+      outputValueController.text = 'Invalid input';
+      return;
+    }
+
+    double outputValue;
+    if (selenergyFrom == selenergyTo) {
+      outputValue = inputValue;
+    } else {
+      // For simplicity, we assume 1 unit conversion (you need to implement actual conversion logic)
+      outputValue = inputValue; // Placeholder for actual conversion logic
+    }
+
+    setState(() {
+      outputValueController.text = outputValue.toString();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +157,17 @@ class _EnergyConvState extends State<EnergyConv> {
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {
-                  // Implement conversion logic here
-                },
+                onPressed: convert,
                 child: const Text('Convert'),
+              ),
+              const SizedBox(height: 20.0),
+              TextField(
+                controller: outputValueController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Output Nilai',
+                ),
+                readOnly: true,
               ),
             ],
           ),

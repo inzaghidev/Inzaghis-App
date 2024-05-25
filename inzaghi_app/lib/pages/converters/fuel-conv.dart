@@ -7,8 +7,16 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> fuels = [];
-const List<String> fuelsAbr = [];
+const List<String> fuels = [
+  'Milimeter/Liter (mm/L)',
+  'Meter/Liter (m/L)',
+  'Kilometer/Liter (km/L)',
+];
+const List<String> fuelsAbr = [
+  'mm/L',
+  'm/L',
+  'km/L',
+];
 
 class FuelConv extends StatefulWidget {
   const FuelConv({super.key});
@@ -18,11 +26,19 @@ class FuelConv extends StatefulWidget {
 }
 
 class _FuelConvState extends State<FuelConv> {
-  String? selfuelsFrom = ' ()';
-  String? selfuelsTo = ' ()';
+  String? selfuelsFrom = 'Meter/Liter (m/L)';
+  String? selfuelsTo = 'Kilometer/Liter (km/L)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
+
+  void convert() {
+    // Implement conversion logic here
+    // For demonstration, we just set the output to the same as input
+    setState(() {
+      outputValueController.text = inputValueController.text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

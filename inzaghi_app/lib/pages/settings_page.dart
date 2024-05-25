@@ -8,8 +8,56 @@ class SettingsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Settings'),
       ),
-      body: Center(
-        child: Text('Settings Page'),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.question_mark),
+            title: Text('About'),
+            onTap: () {
+              Navigator.pushNamed(context, '/about');
+            },
+          ),
+          const SizedBox(height: 10),
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text('Profile'),
+            onTap: () {
+              Navigator.pushNamed(context, '/profile');
+            },
+          ),
+          const SizedBox(height: 10),
+          ListTile(
+            leading: Icon(Icons.color_lens),
+            title: Text('Appearance'),
+            onTap: () {
+              // Navigate to Appearance settings
+            },
+          ),
+          const SizedBox(height: 10),
+          ListTile(
+            leading: Icon(Icons.language),
+            title: Text('Language'),
+            onTap: () {
+              // Navigate to Language settings
+            },
+          ),
+          const SizedBox(height: 10),
+          ListTile(
+            leading: Icon(Icons.help),
+            title: Text('Help Center'),
+            onTap: () {
+              // Navigate to Help Center
+            },
+          ),
+          const SizedBox(height: 10),
+          ListTile(
+            leading: Icon(Icons.contact_emergency),
+            title: Text('Contact'),
+            onTap: () {
+              // Navigate to Help Center
+            },
+          ),
+        ],
       ),
       bottomNavigationBar: NavBar(
         selectedIndex: 2,

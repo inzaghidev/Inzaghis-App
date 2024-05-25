@@ -7,8 +7,38 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> time = ['Second (s)', 'Minute (m)', 'Hour (h)'];
-const List<String> timeAbr = ['s', 'm', 'h'];
+const List<String> timeUnits = [
+  'Millisecond (ms)',
+  'Second (s)',
+  'Minute (min)',
+  'Hour (h)',
+  'Day (d)',
+  'Week (w)',
+  'Month (M)',
+  'Year (Y)',
+];
+
+const List<String> timeUnitsAbr = [
+  'ms',
+  's',
+  'min',
+  'h',
+  'd',
+  'w',
+  'M',
+  'Y',
+];
+
+const Map<String, double> timeConversionFactors = {
+  'Millisecond (ms)': 1 / 1000,
+  'Second (s)': 1,
+  'Minute (min)': 60,
+  'Hour (h)': 3600,
+  'Day (d)': 86400,
+  'Week (w)': 604800,
+  'Month (M)': 2592000, // Assuming 30 days in a month
+  'Year (Y)': 31536000, // Assuming 365 days in a year
+};
 
 class TimeConv extends StatefulWidget {
   const TimeConv({super.key});
@@ -19,16 +49,19 @@ class TimeConv extends StatefulWidget {
 
 class _TimeConvState extends State<TimeConv> {
   String? seltimeFrom = 'Hour (h)';
-  String? seltimeTo = 'Minute (m)';
+  String? seltimeTo = 'Minute (min)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
 
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
+    double input = double.tryParse(inputValueController.text) ?? 0.0;
+    double factorFrom = timeConversionFactors[seltimeFrom!]!;
+    double factorTo = timeConversionFactors[seltimeTo!]!;
+    double result = input * (factorFrom / factorTo);
+
     setState(() {
-      outputValueController.text = inputValueController.text;
+      outputValueController.text = result.toString();
     });
   }
 
@@ -83,7 +116,7 @@ class _TimeConvState extends State<TimeConv> {
                     seltimeFrom = newValue;
                   });
                 },
-                items: time.map<DropdownMenuItem<String>>((String value) {
+                items: timeUnits.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -116,7 +149,7 @@ class _TimeConvState extends State<TimeConv> {
                     seltimeTo = newValue;
                   });
                 },
-                items: time.map<DropdownMenuItem<String>>((String value) {
+                items: timeUnits.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -148,7 +181,7 @@ class _TimeConvState extends State<TimeConv> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
-                        timeAbr[time.indexOf(seltimeFrom!)],
+                        timeUnitsAbr[timeUnits.indexOf(seltimeFrom!)],
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -191,7 +224,7 @@ class _TimeConvState extends State<TimeConv> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
-                        timeAbr[time.indexOf(seltimeTo!)],
+                        timeUnitsAbr[timeUnits.indexOf(seltimeTo!)],
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,

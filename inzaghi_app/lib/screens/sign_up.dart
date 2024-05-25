@@ -3,7 +3,7 @@ import 'dart:js';
 import 'screens/dashboard.dart';
 import 'services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'screens/login_screen.dart';
+import'screens/login_screen.dart';
 import 'package:inzaghis_app/utils/appvalidator.dart';
 
 // ignore: must_be_immutable

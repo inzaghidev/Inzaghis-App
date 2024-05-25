@@ -7,8 +7,27 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> force = [];
-const List<String> forceAbr = [];
+const List<String> force = [
+  'Milinewton (mN)',
+  'Newton (N)',
+  'Kilonewton (kN)',
+  'Meganewton (MN)',
+  'Giganewton (GN)',
+  'Gram-Force (gf)',
+  'Kiloram-Force (kgf)',
+  'Ton-Force (tf)',
+];
+const List<String> forceAbr = [
+  'mN',
+  'N',
+  'kN',
+  'MN',
+  'GN',
+  'gf',
+  'kgf',
+  'tf',
+  'dyn',
+];
 
 class ForceConv extends StatefulWidget {
   const ForceConv({super.key});
@@ -18,11 +37,19 @@ class ForceConv extends StatefulWidget {
 }
 
 class _ForceConvState extends State<ForceConv> {
-  String? selforceFrom = ' ()';
-  String? selforceTo = ' ()';
+  String? selforceFrom = 'Newton (N)';
+  String? selforceTo = 'Kilonewton (kN)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
+
+  void convert() {
+    // Implement conversion logic here
+    // For demonstration, we just set the output to the same as input
+    setState(() {
+      outputValueController.text = inputValueController.text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,20 +143,83 @@ class _ForceConvState extends State<ForceConv> {
                 }).toList(),
               ),
               const SizedBox(height: 20.0),
-              TextField(
-                controller: inputValueController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Input Nilai',
-                ),
-                keyboardType: TextInputType.number,
+              Row(
+                children: [
+                  Expanded(
+                    flex: 17, // 85% width
+                    child: TextField(
+                      controller: inputValueController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Input Nilai',
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 3, // 15% width
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60, // Match height of the TextField
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        forceAbr[force.indexOf(selforceFrom!)],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {
-                  // Implement conversion logic here
-                },
+                onPressed: convert,
                 child: const Text('Convert'),
+              ),
+              const SizedBox(height: 40.0),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 17, // 85% width
+                    child: TextField(
+                      controller: outputValueController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Hasil Output',
+                      ),
+                      keyboardType: TextInputType.number,
+                      enabled: false, // Disable the text field
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 3, // 15% width
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60, // Match height of the TextField
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        forceAbr[force.indexOf(selforceTo!)],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

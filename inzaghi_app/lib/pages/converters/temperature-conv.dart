@@ -8,12 +8,14 @@ class IconLabel {
 }
 
 const List<String> temperatures = [
-  'Celcius (°C)',
+  'Celsius (°C)',
   'Fahrenheit (°F)',
-  'Reamur (°R)',
+  'Reaumur (°r)',
+  'Rankine (°R)',
   'Kelvin (K)'
 ];
-const List<String> temperaturesAbr = ['°C', '°F', '°R', 'K'];
+
+const List<String> temperaturesAbr = ['°C', '°F', '°r', '°R', 'K'];
 
 class TemperatureConv extends StatefulWidget {
   const TemperatureConv({super.key});
@@ -23,17 +25,70 @@ class TemperatureConv extends StatefulWidget {
 }
 
 class _TemperatureConvState extends State<TemperatureConv> {
-  String? seltemperaturesFrom = 'Celcius (°C)';
+  String? seltemperaturesFrom = 'Celsius (°C)';
   String? seltemperaturesTo = 'Fahrenheit (°F)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
 
+  double celsiusToFahrenheit(double c) => (c * 9 / 5) + 32;
+  double celsiusToReaumur(double c) => c * 4 / 5;
+  double celsiusToRankine(double c) => (c + 273.15) * 9 / 5;
+  double celsiusToKelvin(double c) => c + 273.15;
+
+  double fahrenheitToCelsius(double f) => (f - 32) * 5 / 9;
+  double reaumurToCelsius(double r) => r * 5 / 4;
+  double rankineToCelsius(double r) => (r - 491.67) * 5 / 9;
+  double kelvinToCelsius(double k) => k - 273.15;
+
+  double convertTemperature(double value, String from, String to) {
+    double celsiusValue;
+
+    // Convert from the original unit to Celsius
+    switch (from) {
+      case 'Celsius (°C)':
+        celsiusValue = value;
+        break;
+      case 'Fahrenheit (°F)':
+        celsiusValue = fahrenheitToCelsius(value);
+        break;
+      case 'Reaumur (°r)':
+        celsiusValue = reaumurToCelsius(value);
+        break;
+      case 'Rankine (°R)':
+        celsiusValue = rankineToCelsius(value);
+        break;
+      case 'Kelvin (K)':
+        celsiusValue = kelvinToCelsius(value);
+        break;
+      default:
+        throw Exception('Unknown temperature unit: $from');
+    }
+
+    // Convert from Celsius to the target unit
+    switch (to) {
+      case 'Celsius (°C)':
+        return celsiusValue;
+      case 'Fahrenheit (°F)':
+        return celsiusToFahrenheit(celsiusValue);
+      case 'Reaumur (°r)':
+        return celsiusToReaumur(celsiusValue);
+      case 'Rankine (°R)':
+        return celsiusToRankine(celsiusValue);
+      case 'Kelvin (K)':
+        return celsiusToKelvin(celsiusValue);
+      default:
+        throw Exception('Unknown temperature unit: $to');
+    }
+  }
+
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
+    double input = double.tryParse(inputValueController.text) ?? 0.0;
+    double result =
+        convertTemperature(input, seltemperaturesFrom!, seltemperaturesTo!);
+
     setState(() {
-      outputValueController.text = inputValueController.text;
+      outputValueController.text = result.toString();
     });
   }
 
