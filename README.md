@@ -16,4 +16,14 @@ Inzaghi’s App kemungkinan akan diluncurkan pada Tahun 2024 mendatang, dan mungki
 
 Berikut ini adalah Tampilan Utama dari Inzaghi's App :
 
-![Inzaghi's App Homepage](./inzaghi_app/assets/images/inzaghis-app-under-construction-homepage.png)
+1. Home Page
+
+![Inzaghi's App Homepage](./inzaghi_app/assets/images/inzaghis-app-homepage.jpg)
+
+2. App Page
+
+![Inzaghi's App Homepage](./inzaghi_app/assets/images/inzaghis-app-appspage.jpg)
+
+3. Settings Page
+
+![Inzaghi's App Homepage](./inzaghi_app/assets/images/inzaghis-app-settingspage.jpg)
