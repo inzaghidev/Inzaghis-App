@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class IconLabel {
   final String label;
@@ -11,9 +13,18 @@ const List<String> cryptoCurrency = [
   'Bitcoin (BTC)',
   'Ethereum (ETH)',
   'Litecoin (LTC)',
-  'Dogecoin (DOGE)'
+  'Dogecoin (DOGE)',
+  'Avalanche (AVAX)',
+  'Binancecoin (BNB)',
 ];
-const List<String> cryptoCurrencyAbr = ['BTC', 'ETH', 'LTC', 'DOGE'];
+const List<String> cryptoCurrencyAbr = [
+  'BTC',
+  'ETH',
+  'LTC',
+  'DOGE',
+  'AVAX',
+  'BNB',
+];
 
 class CryptoCurrencyConv extends StatefulWidget {
   const CryptoCurrencyConv({super.key});
@@ -29,12 +40,45 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
 
+  Map<String, double> exchangeRates = {};
+
+  @override
+  void initState() {
+    super.initState();
+    fetchExchangeRates();
+  }
+
+  Future<void> fetchExchangeRates() async {
+    final response = await http.get(
+        Uri.parse('https://api.coinbase.com/v2/exchange-rates?currency=BTC'));
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      setState(() {
+        exchangeRates = Map<String, double>.from(data['rates']);
+      });
+    } else {
+      throw Exception('Failed to load exchange rates');
+    }
+  }
+
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
-    setState(() {
-      outputValueController.text = inputValueController.text;
-    });
+    final inputAmount = double.tryParse(inputValueController.text) ?? 0;
+    final fromCurrency =
+        cryptoCurrencyAbr[cryptoCurrency.indexOf(selcryptoCurrencyFrom!)];
+    final toCurrency =
+        cryptoCurrencyAbr[cryptoCurrency.indexOf(selcryptoCurrencyTo!)];
+
+    if (exchangeRates.isNotEmpty) {
+      final fromRate = exchangeRates[fromCurrency] ?? 1;
+      final toRate = exchangeRates[toCurrency] ?? 1;
+
+      final convertedAmount = inputAmount * toRate / fromRate;
+
+      setState(() {
+        outputValueController.text = convertedAmount.toStringAsFixed(2);
+      });
+    }
   }
 
   @override

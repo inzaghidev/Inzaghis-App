@@ -20,10 +20,16 @@ Berikut ini adalah Tampilan Utama dari Inzaghi's App :
 
 ![Inzaghi's App Homepage](./inzaghi_app/assets/images/inzaghis-app-homepage.jpg)
 
+Halaman ini masih dikembangkan
+
 2. App Page
 
 ![Inzaghi's App Homepage](./inzaghi_app/assets/images/inzaghis-app-appspage.jpg)
 
+Halaman ini masih dikembangkan, dan terdiri dari beberapa Aplikasi seperti Widgets, Converters, dan Calculators.
+
 3. Settings Page
 
 ![Inzaghi's App Homepage](./inzaghi_app/assets/images/inzaghis-app-settingspage.jpg)
+
+Merupakan Pengaturan yang terdiri dari Tentang (About), Profile, Contact, dll.
