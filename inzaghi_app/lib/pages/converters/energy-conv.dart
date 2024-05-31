@@ -147,27 +147,83 @@ class _EnergyConvState extends State<EnergyConv> {
                 }).toList(),
               ),
               const SizedBox(height: 20.0),
-              TextField(
-                controller: inputValueController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Input Nilai',
-                ),
-                keyboardType: TextInputType.number,
+              Row(
+                children: [
+                  Expanded(
+                    flex: 17, // 85% width
+                    child: TextField(
+                      controller: inputValueController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Input Nilai',
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 3, // 15% width
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60, // Match height of the TextField
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        energyAbr[energy.indexOf(selenergyFrom!)],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: convert,
                 child: const Text('Convert'),
               ),
-              const SizedBox(height: 20.0),
-              TextField(
-                controller: outputValueController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Output Nilai',
-                ),
-                readOnly: true,
+              const SizedBox(height: 40.0),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 17, // 85% width
+                    child: TextField(
+                      controller: outputValueController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Hasil Output',
+                      ),
+                      keyboardType: TextInputType.number,
+                      enabled: false, // Disable the text field
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 3, // 15% width
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60, // Match height of the TextField
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        energyAbr[energy.indexOf(selenergyTo!)],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

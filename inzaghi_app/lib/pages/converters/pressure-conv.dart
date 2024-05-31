@@ -34,6 +34,21 @@ const List<String> pressuresAbr = [
   'ksi',
 ];
 
+// Conversion factors relative to Pascal (Pa)
+const Map<String, double> conversionFactors = {
+  'µPa': 1e-6,
+  'mPa': 1e-3,
+  'Pa': 1.0,
+  'kPa': 1e3,
+  'MPa': 1e6,
+  'GPa': 1e9,
+  'TPa': 1e12,
+  'atm': 101325.0,
+  'bar': 1e5,
+  'psi': 6894.76,
+  'ksi': 6894760.0,
+};
+
 class PressureConv extends StatefulWidget {
   const PressureConv({super.key});
 
@@ -49,11 +64,21 @@ class _PressureConvState extends State<PressureConv> {
   final TextEditingController outputValueController = TextEditingController();
 
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
-    setState(() {
-      outputValueController.text = inputValueController.text;
-    });
+    double? inputValue = double.tryParse(inputValueController.text);
+    if (inputValue != null) {
+      String fromAbr = pressuresAbr[pressures.indexOf(selpressureFrom!)];
+      String toAbr = pressuresAbr[pressures.indexOf(selpressureTo!)];
+
+      double fromFactor = conversionFactors[fromAbr]!;
+      double toFactor = conversionFactors[toAbr]!;
+
+      double valueInPa = inputValue * fromFactor;
+      double convertedValue = valueInPa / toFactor;
+
+      setState(() {
+        outputValueController.text = convertedValue.toStringAsFixed(2);
+      });
+    }
   }
 
   @override

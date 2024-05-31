@@ -7,6 +7,9 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
+const List<String> density = [];
+const List<String> densityAbr = [];
+
 class DensityConv extends StatefulWidget {
   const DensityConv({super.key});
 
@@ -15,6 +18,12 @@ class DensityConv extends StatefulWidget {
 }
 
 class _DensityConvState extends State<DensityConv> {
+  String? seldensityFrom = ' ()';
+  String? seldensityTo = ' ()';
+
+  final TextEditingController inputValueController = TextEditingController();
+  final TextEditingController outputValueController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -17,6 +17,12 @@ class CurrentConv extends StatefulWidget {
 class _CurrentConvState extends State<CurrentConv> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return Scaffold(
+      backgroundColor: const Color(0xFFCAE2F0),
+      appBar: AppBar(
+        title: const Text('Current Converter'),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }

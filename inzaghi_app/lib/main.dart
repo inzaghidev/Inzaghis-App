@@ -35,13 +35,20 @@ import 'package:inzaghi_app/pages/converters/momentinertia-conv.dart';
 
 //Electricity Converters :
 import 'package:inzaghi_app/pages/converters/charge-conv.dart';
-//import 'package:inzaghi_app/pages/converters/linchargdenst-conv.dart';
-//import 'package:inzaghi_app/pages/converters/surchargdenst-conv.dart';
-//import 'package:inzaghi_app/pages/converters/volchargdenst-conv.dart';
+import 'package:inzaghi_app/pages/converters/linchargdenst-conv.dart';
+import 'package:inzaghi_app/pages/converters/surchargdenst-conv.dart';
+import 'package:inzaghi_app/pages/converters/volchargdenst-conv.dart';
 import 'package:inzaghi_app/pages/converters/current-conv.dart';
-//import 'package:inzaghi_app/pages/converters/lincurrdenst-conv.dart';
-//import 'package:inzaghi_app/pages/converters/surcurrdenst-conv.dart';
-//import 'package:inzaghi_app/pages/converters/volcurrdenst-conv.dart';
+import 'package:inzaghi_app/pages/converters/lincurrdenst-conv.dart';
+import 'package:inzaghi_app/pages/converters/surcurrdenst-conv.dart';
+import 'package:inzaghi_app/pages/converters/volcurrdenst-conv.dart';
+
+//import 'package:inzaghi_app/pages/converters/elfieldstrength-conv.dart';
+//import 'package:inzaghi_app/pages/converters/elpotential-conv.dart';
+//import 'package:inzaghi_app/pages/converters/elresistance-conv.dart';
+//import 'package:inzaghi_app/pages/converters/elresistivity-conv.dart';
+//import 'package:inzaghi_app/pages/converters/elonductance-conv.dart';
+//import 'package:inzaghi_app/pages/converters/elconsuctivity-conv.dart';
 
 //=============================================================
 import 'package:inzaghi_app/pages/calculators.dart';
@@ -96,13 +103,19 @@ class MyApp extends StatelessWidget {
 
         //Electricity Converters :
         '/charge-conv': (context) => ChargeConv(),
-        //'/linchargdenst-conv': (context) => LinearChargeDensityConv();
-        //'/surchargdenst-conv': (context) => SurfaceChargeDensityConv();
-        //'/volchargdenst-conv': (context) => VolumeChargeDensityConv();
+        '/linchargdenst-conv': (context) => LinearChargeDensityConv(),
+        '/surchargdenst-conv': (context) => SurfaceChargeDensityConv(),
+        '/volchargdenst-conv': (context) => VolumeChargeDensityConv(),
         '/current-conv': (context) => CurrentConv(),
-        //'/lincurrdenst-conv': (context) => LinearCurrentDensityConv();
-        //'/surcurrdenst-conv': (context) => SurfaceCurrentDensityConv();
-        //'/volcurrdenst-conv': (context) => VolumeCurrentDensityConv();
+        '/lincurrdenst-conv': (context) => LinearCurrentDensityConv(),
+        '/surcurrdenst-conv': (context) => SurfaceCurrentDensityConv(),
+        '/volcurrdenst-conv': (context) => VolumeCurrentDensityConv(),
+        //'/elfieldstrength-conv': (context) => ElectricFieldStrengthConv(),
+        //'/elpotential-conv': (context) => ElectricPotentialConv(),
+        //'/elresistance-conv': (context) => ElectricResistanceConv(),
+        //'/elresistivity-conv': (context) => ElectricResistivityConv(),
+        //'/elonductance-conv': (context) => ElectricConductanceConv(),
+        //'/elconsuctivity-conv': (context) => ElectricConductivityConv(),
 
         //======================================================
 

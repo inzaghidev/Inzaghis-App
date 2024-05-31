@@ -7,6 +7,9 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
+const List<String> momentInrtia = [];
+const List<String> momentInrtiaAbr = [];
+
 class MomentInertiaConv extends StatefulWidget {
   const MomentInertiaConv({super.key});
 
@@ -15,6 +18,12 @@ class MomentInertiaConv extends StatefulWidget {
 }
 
 class _MomentInertiaConvState extends State<MomentInertiaConv> {
+  String? selmomentInrtiaFrom = ' ()';
+  String? selmomentInrtiaTo = ' ()';
+
+  final TextEditingController inputValueController = TextEditingController();
+  final TextEditingController outputValueController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

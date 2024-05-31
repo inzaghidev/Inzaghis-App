@@ -91,10 +91,14 @@ class ConvertersPage extends StatelessWidget {
 
   final List<dynamic> iconElectryConvList = [
     Icons.battery_charging_full_rounded,
-    Icons.abc,
-    Icons.abc,
-    Icons.abc,
+    Icons.linear_scale,
+    Icons.aspect_ratio,
+    Icons.battery_full_rounded,
     Icons.electrical_services,
+    Icons.linear_scale,
+    Icons.aspect_ratio,
+    Icons.battery_full_rounded,
+    Icons.abc,
     Icons.abc,
     Icons.abc,
     Icons.abc,
@@ -113,8 +117,12 @@ class ConvertersPage extends StatelessWidget {
     'Linear Current Density',
     'Surface Current Density',
     'Volume Current Density',
-    'App',
-    'App',
+    'Electric Field Strength',
+    'Electric Potential',
+    'Electric Resistance',
+    'Electric Resistivity',
+    'Electric Conductance',
+    'Electric Conductivity',
     'App',
     'App',
   ];
@@ -128,8 +136,12 @@ class ConvertersPage extends StatelessWidget {
     '/lincurrdenst-conv',
     '/surcurrdenst-conv',
     '/volcurrdenst-conv',
-    '/app-conv',
-    '/app-conv',
+    '/elfieldstrength-conv',
+    '/elpotential-conv',
+    '/elresistance-conv',
+    '/elresistivity-conv',
+    '/elonductance-conv',
+    '/elconsuctivity-conv',
     '/app-conv',
     '/app-conv',
   ];
@@ -149,6 +161,27 @@ class ConvertersPage extends StatelessWidget {
   ];
 
   final List<String> routeFluidConvList = [
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+  ];
+
+  final List<dynamic> iconHeatConvList = [
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+  ];
+
+  final List<String> titleHeatConvList = [
+    'App',
+    'App',
+    'App',
+    'App',
+  ];
+
+  final List<String> routeHeatConvList = [
     '/app-conv',
     '/app-conv',
     '/app-conv',
@@ -350,6 +383,46 @@ class ConvertersPage extends StatelessWidget {
                     children: [
                       const Text(
                         'Heat Converters',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: 10,
+                        runSpacing: 10,
+                        children:
+                            List.generate(iconHeatConvList.length, (index) {
+                          return buttonCards.buildCardWithImagesIcon(
+                            context,
+                            iconHeatConvList[index],
+                            titleHeatConvList[index],
+                            routeHeatConvList[index],
+                          );
+                        }),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              Card(
+                margin: const EdgeInsets.all(10),
+                color: Colors.white54,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  margin: const EdgeInsets.only(
+                      left: 10, right: 10, top: 10, bottom: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Light Converters',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,

@@ -17,6 +17,12 @@ class ChargeConv extends StatefulWidget {
 class _ChargeConvState extends State<ChargeConv> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return Scaffold(
+      backgroundColor: const Color(0xFFCAE2F0),
+      appBar: AppBar(
+        title: const Text('Charge Converter'),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }

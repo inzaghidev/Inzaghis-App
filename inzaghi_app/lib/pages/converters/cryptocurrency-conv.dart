@@ -54,8 +54,10 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+      print('Data fetched: $data'); // Tambahkan ini untuk debugging
       setState(() {
-        exchangeRates = Map<String, double>.from(data['rates']);
+        exchangeRates = Map<String, double>.from(data['data']['rates']
+            .map((key, value) => MapEntry(key, double.parse(value))));
       });
     } else {
       throw Exception('Failed to load exchange rates');
@@ -69,15 +71,25 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
     final toCurrency =
         cryptoCurrencyAbr[cryptoCurrency.indexOf(selcryptoCurrencyTo!)];
 
+    print('From Currency: $fromCurrency');
+    print('To Currency: $toCurrency');
+    print('Input Amount: $inputAmount');
+    print('Exchange Rates: $exchangeRates');
+
     if (exchangeRates.isNotEmpty) {
       final fromRate = exchangeRates[fromCurrency] ?? 1;
       final toRate = exchangeRates[toCurrency] ?? 1;
+
+      print('From Rate: $fromRate');
+      print('To Rate: $toRate');
 
       final convertedAmount = inputAmount * toRate / fromRate;
 
       setState(() {
         outputValueController.text = convertedAmount.toStringAsFixed(2);
       });
+
+      print('Converted Amount: $convertedAmount');
     }
   }
 
