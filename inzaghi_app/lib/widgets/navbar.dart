@@ -6,6 +6,7 @@ class NavBar extends StatelessWidget {
   final ValueChanged<int> onDestinationSelected;
 
   const NavBar({
+    super.key,
     required this.selectedIndex,
     required this.onDestinationSelected,
   });
