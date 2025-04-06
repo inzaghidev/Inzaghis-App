@@ -51,6 +51,10 @@ class ProfilePage extends StatelessWidget {
                 leading: Icon(Icons.account_circle),
                 title: Text('TikTok: @posuma17'),
               ),
+              ListTile(
+                leading: Icon(Icons.account_circle),
+                title: Text('Twitter/X: @lPosumA0209'),
+              ),
               const ListTile(
                 leading: Icon(Icons.account_circle),
                 title: Text('GitHub: inzaghipa1709'),
@@ -66,7 +70,7 @@ class ProfilePage extends StatelessWidget {
               SizedBox(height: 8),
               ListTile(
                 leading: Icon(Icons.web),
-                title: Text('Inzaghi\'s Sites: inzaghisites.000webhostapp.com'),
+                title: Text('Inzaghi\'s Sites: inzaghi.wuaze.com'),
               ),
               SizedBox(height: 24),
               Text(

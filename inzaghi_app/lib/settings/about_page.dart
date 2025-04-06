@@ -37,6 +37,11 @@ class AboutPage extends StatelessWidget {
               height: 224,
               fit: BoxFit.cover,
             ),
+            SizedBox(height: 40),
+            Text(
+              "© 2025 Inzaghi's Corp. All rights reserved.",
+              style: TextStyle(fontSize: 12),
+            )
           ],
         ),
       ),

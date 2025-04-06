@@ -27,6 +27,14 @@ class SettingsPage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text("Inzaghi's Group"),
+            onTap: () {
+              Navigator.pushNamed(context, '/inzaghis-group');
+            },
+          ),
+          const SizedBox(height: 10),
+          ListTile(
             leading: Icon(Icons.color_lens),
             title: Text('Appearance'),
             onTap: () {
