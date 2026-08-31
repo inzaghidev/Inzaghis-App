@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
                     CircleAvatar(
                       radius: 50,
                       backgroundImage: AssetImage(
-                          'assets/images\/inzaghi-posuma-alkahfi.jpg'), // Ganti dengan path gambar profil Anda
+                          'assets/images/inzaghi-posuma-alkahfi.jpg'), // Ganti dengan path gambar profil Anda
                     ),
                     SizedBox(height: 16),
                     Text(
@@ -66,6 +66,12 @@ class ProfilePage extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+              SizedBox(height: 8),
+              ListTile(
+                leading: Icon(Icons.web),
+                title: Text(
+                    'Inzaghi\'s Sites (Google Sites): sites.google.com/view/inzaghi-s-sites'),
               ),
               SizedBox(height: 8),
               ListTile(
