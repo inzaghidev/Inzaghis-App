@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 class ButtonCards extends StatelessWidget {
@@ -5,6 +7,9 @@ class ButtonCards extends StatelessWidget {
 
   Widget buildCardWithImagesIcon(
       BuildContext context, dynamic imageOrIcon, String title, String route) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final cardWidth = math.min(126.0, (screenWidth - 92) / 3);
+
     return Card(
       margin: const EdgeInsets.all(2),
       elevation: 2,
@@ -17,7 +22,7 @@ class ButtonCards extends StatelessWidget {
           Navigator.pushNamed(context, route);
         },
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.2,
+          width: cardWidth,
           height: 80,
           child: Center(
             child: Column(

@@ -89,6 +89,11 @@ class ProfilePage extends StatelessWidget {
               SizedBox(height: 8),
               ListTile(
                 leading: Icon(Icons.book),
+                title: Text(
+                    'Blog Aggregator : inzaghis-blog-aggregator.vercel.app'),
+              ),
+              ListTile(
+                leading: Icon(Icons.book),
                 title: Text('Legacy : inzaghiposuma.blogspot.com'),
               ),
               ListTile(

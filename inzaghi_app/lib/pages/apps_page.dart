@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inzaghi_app/widgets/navbar.dart';
 import 'package:inzaghi_app/widgets/button_cards.dart';
 
 class AppsPage extends StatelessWidget {
@@ -190,13 +189,6 @@ class AppsPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: NavBar(
-        selectedIndex: 1,
-        onDestinationSelected: (int value) {
-          final List<String> routes = ['/', '/apps', '/settings'];
-          Navigator.pushNamed(context, routes[value]);
-        },
       ),
     );
   }

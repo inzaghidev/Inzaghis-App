@@ -63,9 +63,14 @@ class _CurrencyConvState extends State<CurrencyConv> {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      setState(() {
-        exchangeRates = Map<String, double>.from(data['rates']);
-      });
+      final rates = data['rates'] as Map<String, dynamic>;
+      final parsedRates = rates.map(
+        (key, value) => MapEntry(key, (value as num).toDouble()),
+      );
+
+      if (!mounted) return;
+
+      setState(() => exchangeRates = parsedRates);
     } else {
       throw Exception('Failed to load exchange rates');
     }
