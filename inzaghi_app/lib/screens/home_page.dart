@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
     _pageController = PageController();
   }
 
+// Smoother page transition when tapping on the bottom navigation bar
   void _onDestinationSelected(int index) {
     setState(() {
       _selectedIndex = index;

@@ -16,8 +16,13 @@ class VolumeChargeDensityConv extends StatefulWidget {
 }
 
 class _VolumeChargeDensityConvState extends State<VolumeChargeDensityConv> {
-  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return Scaffold(
+      backgroundColor: const Color(0xFFCAE2F0),
+      appBar: AppBar(
+        title: const Text('Volume Charge Density Converter'),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }

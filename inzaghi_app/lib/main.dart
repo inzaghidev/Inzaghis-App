@@ -3,6 +3,7 @@ import 'package:inzaghi_app/screens/home_page.dart';
 import 'package:inzaghi_app/settings/about_page.dart';
 import 'package:inzaghi_app/pages/apps_page.dart';
 import 'package:inzaghi_app/pages/settings_page.dart';
+import 'package:inzaghi_app/settings/inzaghis-group.dart';
 import 'package:inzaghi_app/settings/profile.dart';
 
 //=============================================================
@@ -23,7 +24,7 @@ import 'package:inzaghi_app/pages/converters/power-conv.dart';
 import 'package:inzaghi_app/pages/converters/fuel-conv.dart';
 import 'package:inzaghi_app/pages/converters/energy-conv.dart';
 import 'package:inzaghi_app/pages/converters/angle-conv.dart';
-import 'package:inzaghi_app/pages/converters/electricity-conv.dart';
+import 'package:inzaghi_app/pages/converters/voltage-conv.dart';
 import 'package:inzaghi_app/pages/converters/storagedata-conv.dart';
 import 'package:inzaghi_app/pages/converters/numbersystem-conv.dart';
 
@@ -42,16 +43,22 @@ import 'package:inzaghi_app/pages/converters/current-conv.dart';
 import 'package:inzaghi_app/pages/converters/lincurrdenst-conv.dart';
 import 'package:inzaghi_app/pages/converters/surcurrdenst-conv.dart';
 import 'package:inzaghi_app/pages/converters/volcurrdenst-conv.dart';
+import 'package:inzaghi_app/pages/converters/elfieldstrength-conv.dart';
+import 'package:inzaghi_app/pages/converters/elpotential-conv.dart';
+import 'package:inzaghi_app/pages/converters/elresistance-conv.dart';
+import 'package:inzaghi_app/pages/converters/elresistivity-conv.dart';
 
-//import 'package:inzaghi_app/pages/converters/elfieldstrength-conv.dart';
-//import 'package:inzaghi_app/pages/converters/elpotential-conv.dart';
-//import 'package:inzaghi_app/pages/converters/elresistance-conv.dart';
-//import 'package:inzaghi_app/pages/converters/elresistivity-conv.dart';
 //import 'package:inzaghi_app/pages/converters/elonductance-conv.dart';
 //import 'package:inzaghi_app/pages/converters/elconsuctivity-conv.dart';
 
 //=============================================================
+
+//Calculators :
 import 'package:inzaghi_app/pages/calculators.dart';
+import 'package:inzaghi_app/pages/calculators/standard-calc.dart';
+// import 'package:inzaghi_app/pages/calculators/scientific-calc.dart';
+// import 'package:inzaghi_app/pages/calculators/graphics-calc.dart';
+// import 'package:inzaghi_app/pages/calculators/programmer-calc.dart';
 
 import 'package:inzaghi_app/widgets/navbar.dart';
 
@@ -72,6 +79,7 @@ class MyApp extends StatelessWidget {
         '/converters': (context) => ConvertersPage(),
         '/calculators': (context) => CalculatorsPage(),
         '/profile': (context) => ProfilePage(),
+        '/inzaghis-group': (context) => InzaghisGroup(),
 
         //======================================================
 
@@ -91,7 +99,7 @@ class MyApp extends StatelessWidget {
         '/fuel-conv': (context) => FuelConv(),
         '/energy-conv': (context) => EnergyConv(),
         '/angle-conv': (context) => AngleConv(),
-        '/electricity-conv': (context) => ElectricityConv(),
+        '/voltage-conv': (context) => VoltageConv(),
         '/storagedata-conv': (context) => DataStorageConv(),
         '/numbersystem-conv': (context) => NumberSystemsConv(),
 
@@ -110,17 +118,21 @@ class MyApp extends StatelessWidget {
         '/lincurrdenst-conv': (context) => LinearCurrentDensityConv(),
         '/surcurrdenst-conv': (context) => SurfaceCurrentDensityConv(),
         '/volcurrdenst-conv': (context) => VolumeCurrentDensityConv(),
-        //'/elfieldstrength-conv': (context) => ElectricFieldStrengthConv(),
-        //'/elpotential-conv': (context) => ElectricPotentialConv(),
-        //'/elresistance-conv': (context) => ElectricResistanceConv(),
-        //'/elresistivity-conv': (context) => ElectricResistivityConv(),
-        //'/elonductance-conv': (context) => ElectricConductanceConv(),
-        //'/elconsuctivity-conv': (context) => ElectricConductivityConv(),
+        '/elfieldstrength-conv': (context) => ElectricFieldStrengthConv(),
+        '/elpotential-conv': (context) => ElectricPotentialConv(),
+        '/elresistance-conv': (context) => ElectricResistanceConv(),
+        '/elresistivity-conv': (context) => ElectricResistivityConv(),
+        // '/elonductance-conv': (context) => ElectricConductanceConv(),
+        // '/elconsuctivity-conv': (context) => ElectricConductivityConv(),
 
         //======================================================
 
-        //'/standard-calc': (context) => StandardCalc(),
+        '/standard-calc': (context) => StandardCalc(),
         //'/scientific-calc': (context) => ScientificCalc(),
+        //'/graphics-calc': (context) => GraphicsCalc(),
+        //'/programmer-calc': (context) => ProgrammerCalc(),
+
+        //'/percentage-calc': (context) => PercentageCalc(),
 
         // Add other routes here
       },

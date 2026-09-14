@@ -16,8 +16,13 @@ class SurfaceCurrentDensityConv extends StatefulWidget {
 }
 
 class _SurfaceCurrentDensityConvState extends State<SurfaceCurrentDensityConv> {
-  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return Scaffold(
+      backgroundColor: const Color(0xFFCAE2F0),
+      appBar: AppBar(
+        title: const Text('Surface Current Density Converter'),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }

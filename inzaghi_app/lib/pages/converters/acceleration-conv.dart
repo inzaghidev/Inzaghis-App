@@ -10,6 +10,9 @@ class IconLabel {
 const List<String> acceleration = [];
 const List<String> accelerationAbr = [];
 
+// const List<String> acceleration = ['', '', '', ''];
+// const List<String> accelerationAbr = ['', '', '', ''];
+
 class AccelerationConv extends StatefulWidget {
   const AccelerationConv({super.key});
 

@@ -18,6 +18,12 @@ class SurfaceChargeDensityConv extends StatefulWidget {
 class _SurfaceChargeDensityConvState extends State<SurfaceChargeDensityConv> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return Scaffold(
+      backgroundColor: const Color(0xFFCAE2F0),
+      appBar: AppBar(
+        title: const Text('Surface Charge Density Converter'),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }

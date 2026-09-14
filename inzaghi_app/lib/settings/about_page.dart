@@ -39,7 +39,7 @@ class AboutPage extends StatelessWidget {
             ),
             SizedBox(height: 40),
             Text(
-              "© 2025 Inzaghi's Corp. All rights reserved.",
+              "© 2026 Inzaghi's Corp. (InzaTech) All rights reserved.",
               style: TextStyle(fontSize: 12),
             )
           ],

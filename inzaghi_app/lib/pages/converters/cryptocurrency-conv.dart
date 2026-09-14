@@ -41,6 +41,7 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
   final TextEditingController outputValueController = TextEditingController();
 
   Map<String, double> exchangeRates = {};
+  String? exchangeRateError;
 
   @override
   void initState() {
@@ -49,18 +50,35 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
   }
 
   Future<void> fetchExchangeRates() async {
-    final response = await http.get(
-        Uri.parse('https://api.coinbase.com/v2/exchange-rates?currency=BTC'));
+    try {
+      final response = await http
+          .get(Uri.parse(
+              'https://api.coinbase.com/v2/exchange-rates?currency=BTC'))
+          .timeout(const Duration(seconds: 15));
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print('Data fetched: $data'); // Tambahkan ini untuk debugging
+      if (response.statusCode != 200) {
+        throw Exception('Server returned ${response.statusCode}');
+      }
+
+      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      final rates = data['data']['rates'] as Map<String, dynamic>;
+      final parsedRates = rates.map(
+        (key, value) => MapEntry(key, double.parse(value.toString())),
+      );
+
+      if (!mounted) return;
+
       setState(() {
-        exchangeRates = Map<String, double>.from(data['data']['rates']
-            .map((key, value) => MapEntry(key, double.parse(value))));
+        exchangeRates = parsedRates;
+        exchangeRateError = null;
       });
-    } else {
-      throw Exception('Failed to load exchange rates');
+    } catch (_) {
+      if (!mounted) return;
+
+      setState(() {
+        exchangeRateError =
+            'Unable to load cryptocurrency rates. Check your internet connection.';
+      });
     }
   }
 
@@ -76,21 +94,24 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
     print('Input Amount: $inputAmount');
     print('Exchange Rates: $exchangeRates');
 
-    if (exchangeRates.isNotEmpty) {
-      final fromRate = exchangeRates[fromCurrency] ?? 1;
-      final toRate = exchangeRates[toCurrency] ?? 1;
+    if (exchangeRates.isEmpty) return;
 
-      print('From Rate: $fromRate');
-      print('To Rate: $toRate');
+    final fromRate = exchangeRates[fromCurrency];
+    final toRate = exchangeRates[toCurrency];
+    if (fromRate == null || toRate == null) return;
 
-      final convertedAmount = inputAmount * toRate / fromRate;
+    final convertedAmount = inputAmount * toRate / fromRate;
 
-      setState(() {
-        outputValueController.text = convertedAmount.toStringAsFixed(2);
-      });
+    setState(() {
+      outputValueController.text = convertedAmount.toStringAsFixed(2);
+    });
+  }
 
-      print('Converted Amount: $convertedAmount');
-    }
+  @override
+  void dispose() {
+    inputValueController.dispose();
+    outputValueController.dispose();
+    super.dispose();
   }
 
   @override
@@ -107,6 +128,14 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20.0),
+              if (exchangeRateError != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Text(
+                    exchangeRateError!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
               const Center(
                 child: Text(
                   "Masukkan Mata Uang Kripto",

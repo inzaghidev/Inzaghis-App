@@ -6,7 +6,7 @@ class InzaghisGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About'),
+        title: Text('About Inzaghi\'s Group'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -14,7 +14,7 @@ class InzaghisGroup extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Inzaghi's App",
+              "Inzaghi's Group",
               textScaleFactor: 2.0,
               style: TextStyle(fontSize: 24),
             ),

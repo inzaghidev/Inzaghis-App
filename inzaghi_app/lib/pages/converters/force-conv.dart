@@ -29,6 +29,17 @@ const List<String> forceAbr = [
   'dyn',
 ];
 
+const Map<String, double> conversionFactors = {
+  'Milinewton (mN)': 0.001,
+  'Newton (N)': 1.0,
+  'Kilonewton (kN)': 1000.0,
+  'Meganewton (MN)': 1e6,
+  'Giganewton (GN)': 1e9,
+  'Gram-Force (gf)': 0.00980665,
+  'Kiloram-Force (kgf)': 9.80665,
+  'Ton-Force (tf)': 9806.65,
+};
+
 class ForceConv extends StatefulWidget {
   const ForceConv({super.key});
 
@@ -44,10 +55,13 @@ class _ForceConvState extends State<ForceConv> {
   final TextEditingController outputValueController = TextEditingController();
 
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
+    double input = double.tryParse(inputValueController.text) ?? 0.0;
+    double factorFrom = conversionFactors[selforceFrom!]!;
+    double factorTo = conversionFactors[selforceTo!]!;
+    double result = input * (factorFrom / factorTo);
+
     setState(() {
-      outputValueController.text = inputValueController.text;
+      outputValueController.text = result.toString();
     });
   }
 

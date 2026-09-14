@@ -21,24 +21,32 @@ class ButtonCards extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(context, route);
         },
-        child: Container(
-          width: cardWidth,
-          height: 80,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (imageOrIcon is IconData)
-                  Icon(imageOrIcon)
-                else if (imageOrIcon is String)
-                  Image.asset(
-                    imageOrIcon,
-                    width: 24, // Set the width of the image
-                    height: 24, // Set the height of the image
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 100),
+          child: SizedBox(
+            width: cardWidth,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (imageOrIcon is IconData)
+                    Icon(imageOrIcon)
+                  else if (imageOrIcon is String)
+                    Image.asset(
+                      imageOrIcon,
+                      width: 24,
+                      height: 24,
+                    ),
+                  const SizedBox(height: 10),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                const SizedBox(height: 10),
-                Text(title, textAlign: TextAlign.center),
-              ],
+                ],
+              ),
             ),
           ),
         ),

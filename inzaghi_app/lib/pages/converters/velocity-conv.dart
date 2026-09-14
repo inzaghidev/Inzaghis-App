@@ -7,8 +7,26 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> velocity = [];
-const List<String> velocityAbr = [];
+const List<String> velocity = [
+  'radian/second (rad/s)',
+  'degree/second (°/s)',
+  'radian/minute (rad/min)',
+  'degree/minute (°/min)',
+  'radian/hour (rad/hr)',
+  'degree/hour (°/hr)',
+  'radian/day (rad/day)',
+  'degree/day (°/day)',
+];
+const List<String> velocityAbr = [
+  'rad/s',
+  '°/s',
+  'rad/min',
+  '°/min',
+  'rad/hr',
+  '°/hr',
+  'rad/day',
+  '°/day'
+];
 
 class VelocityConv extends StatefulWidget {
   const VelocityConv({super.key});
@@ -18,8 +36,8 @@ class VelocityConv extends StatefulWidget {
 }
 
 class _VelocityConvState extends State<VelocityConv> {
-  String? selvelocityFrom = ' ()';
-  String? selvelocityTo = ' ()';
+  String? selvelocityFrom = 'degree/second (°/s)';
+  String? selvelocityTo = 'radian/second (rad/s)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();

@@ -21,7 +21,6 @@ class ConvertersPage extends StatelessWidget {
     'assets/icons/fuel-pump-icon.png',
     Icons.energy_savings_leaf_outlined,
     'assets/icons/angle-icon.png',
-    Icons.electrical_services,
     'assets/icons/data-storage-icon.png',
     'assets/icons/number-system-binary.png',
   ];
@@ -42,7 +41,6 @@ class ConvertersPage extends StatelessWidget {
     'Fuel Consumption',
     'Energy',
     'Angle',
-    'Electricity',
     'Data Storage',
     'Number System',
   ];
@@ -63,7 +61,6 @@ class ConvertersPage extends StatelessWidget {
     '/fuel-conv',
     '/energy-conv',
     '/angle-conv',
-    '/electricity-conv',
     '/storagedata-conv',
     '/numbersystem-conv',
   ];
@@ -90,6 +87,7 @@ class ConvertersPage extends StatelessWidget {
   ];
 
   final List<dynamic> iconElectryConvList = [
+    Icons.electrical_services,
     Icons.battery_charging_full_rounded,
     Icons.linear_scale,
     Icons.aspect_ratio,
@@ -98,9 +96,9 @@ class ConvertersPage extends StatelessWidget {
     Icons.linear_scale,
     Icons.aspect_ratio,
     Icons.battery_full_rounded,
-    Icons.abc,
-    Icons.abc,
-    Icons.abc,
+    Icons.electric_bolt,
+    Icons.electric_bolt,
+    Icons.power_outlined,
     Icons.abc,
     Icons.abc,
     Icons.abc,
@@ -109,7 +107,8 @@ class ConvertersPage extends StatelessWidget {
   ];
 
   final List<String> titleElectryConvList = [
-    'Electrical Charge',
+    'Voltage Converter',
+    'Charge Converter',
     'Linear Charge Density',
     'Surface Charge Density',
     'Volume Charge Density',
@@ -128,6 +127,7 @@ class ConvertersPage extends StatelessWidget {
   ];
 
   final List<String> routeElectryConvList = [
+    '/voltage-conv',
     '/charge-conv',
     '/linchargdenst-conv',
     '/surchargdenst-conv',
@@ -151,6 +151,7 @@ class ConvertersPage extends StatelessWidget {
     Icons.abc,
     Icons.abc,
     Icons.abc,
+    Icons.abc,
   ];
 
   final List<String> titleFluidConvList = [
@@ -158,9 +159,11 @@ class ConvertersPage extends StatelessWidget {
     'App',
     'App',
     'App',
+    'App',
   ];
 
   final List<String> routeFluidConvList = [
+    '/app-conv',
     '/app-conv',
     '/app-conv',
     '/app-conv',
@@ -182,6 +185,27 @@ class ConvertersPage extends StatelessWidget {
   ];
 
   final List<String> routeHeatConvList = [
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+  ];
+
+  final List<dynamic> iconLightConvList = [
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+  ];
+
+  final List<String> titleLightConvList = [
+    'App',
+    'App',
+    'App',
+    'App',
+  ];
+
+  final List<String> routeLightConvList = [
     '/app-conv',
     '/app-conv',
     '/app-conv',
@@ -439,13 +463,13 @@ class ConvertersPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: NavBar(
-        selectedIndex: 1,
-        onDestinationSelected: (int value) {
-          final List<String> routes = ['/', '/apps', '/settings'];
-          Navigator.pushNamed(context, routes[value]);
-        },
-      ),
+      // bottomNavigationBar: NavBar(
+      //   selectedIndex: 1,
+      //   onDestinationSelected: (int value) {
+      //     final List<String> routes = ['/', '/apps', '/settings'];
+      //     Navigator.pushNamed(context, routes[value]);
+      //   },
+      // ),
     );
   }
 }

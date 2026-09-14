@@ -18,6 +18,12 @@ class VolumeCurrentDensityConv extends StatefulWidget {
 class _VolumeCurrentDensityConvState extends State<VolumeCurrentDensityConv> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return Scaffold(
+      backgroundColor: const Color(0xFFCAE2F0),
+      appBar: AppBar(
+        title: const Text('Volume Current Density Converter'),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }

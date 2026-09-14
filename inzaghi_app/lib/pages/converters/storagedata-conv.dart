@@ -7,8 +7,26 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> dataStorage = [];
-const List<String> dataStorageAbr = [];
+const List<String> dataStorage = [
+  'Bit (b)',
+  'Byte (B)',
+  'Kilobyte (KB)',
+  'Megabyte (MB)',
+  'Gigabyte (GB)',
+  'Terabyte (TB)',
+  'Petabyte (PB)',
+  'Exabyte (EB)'
+];
+const List<String> dataStorageAbr = [
+  'b',
+  'B',
+  'KB',
+  'MB',
+  'GB',
+  'TB',
+  'PB',
+  'EB'
+];
 
 class DataStorageConv extends StatefulWidget {
   const DataStorageConv({super.key});
@@ -18,8 +36,8 @@ class DataStorageConv extends StatefulWidget {
 }
 
 class _DataStorageConvState extends State<DataStorageConv> {
-  String? seldataStorageFrom = ' ()';
-  String? seldataStorageTo = ' ()';
+  String? seldataStorageFrom = 'Megabyte (MB)';
+  String? seldataStorageTo = 'Kilobyte (KB)';
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();
@@ -136,10 +154,46 @@ class _DataStorageConvState extends State<DataStorageConv> {
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {
-                  // Implement conversion logic here
-                },
+                onPressed: convert,
                 child: const Text('Convert'),
+              ),
+              const SizedBox(height: 40.0),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 17, // 85% width
+                    child: TextField(
+                      controller: outputValueController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Hasil Output',
+                      ),
+                      keyboardType: TextInputType.number,
+                      enabled: false, // Disable the text field
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 3, // 15% width
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60, // Match height of the TextField
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        dataStorageAbr[dataStorage.indexOf(seldataStorageTo!)],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

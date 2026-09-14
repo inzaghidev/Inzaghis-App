@@ -16,8 +16,13 @@ class LinearCurrentDensityConv extends StatefulWidget {
 }
 
 class _LinearCurrentDensityConvState extends State<LinearCurrentDensityConv> {
-  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return Scaffold(
+      backgroundColor: const Color(0xFFCAE2F0),
+      appBar: AppBar(
+        title: const Text('Linear Current Density Converter'),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }
