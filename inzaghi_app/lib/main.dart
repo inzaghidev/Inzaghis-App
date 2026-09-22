@@ -7,6 +7,7 @@ import 'package:inzaghi_app/settings/inzaghis-group.dart';
 import 'package:inzaghi_app/settings/profile.dart';
 
 //=============================================================
+
 //Basic Converters :
 import 'package:inzaghi_app/pages/converters.dart';
 import 'package:inzaghi_app/pages/converters/length-conv.dart';
@@ -59,6 +60,13 @@ import 'package:inzaghi_app/pages/calculators/standard-calc.dart';
 // import 'package:inzaghi_app/pages/calculators/scientific-calc.dart';
 // import 'package:inzaghi_app/pages/calculators/graphics-calc.dart';
 // import 'package:inzaghi_app/pages/calculators/programmer-calc.dart';
+
+//=============================================================
+
+//Generators :
+// import 'package:inzaghi_app/pages/generators.dart';
+
+//=============================================================
 
 import 'package:inzaghi_app/widgets/navbar.dart';
 
