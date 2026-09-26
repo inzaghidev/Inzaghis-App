@@ -3,8 +3,10 @@ import 'package:inzaghi_app/screens/home_page.dart';
 import 'package:inzaghi_app/settings/about_page.dart';
 import 'package:inzaghi_app/pages/apps_page.dart';
 import 'package:inzaghi_app/pages/settings_page.dart';
-import 'package:inzaghi_app/settings/inzaghis-group.dart';
 import 'package:inzaghi_app/settings/profile.dart';
+import 'package:inzaghi_app/settings/inzaghis-group.dart';
+// import 'package:inzaghi_app/inzaghis-group/inzaghis-blog.dart';
+// import 'package:inzaghi_app/inzaghis-group/inzaghis-media.dart';
 
 //=============================================================
 
@@ -88,6 +90,8 @@ class MyApp extends StatelessWidget {
         '/calculators': (context) => CalculatorsPage(),
         '/profile': (context) => ProfilePage(),
         '/inzaghis-group': (context) => InzaghisGroup(),
+        // '/inzaghis-blog': (context) => InzaghisBlog(),
+        // '/inzaghis-media': (context) => InzaghisMedia(),
 
         //======================================================
 

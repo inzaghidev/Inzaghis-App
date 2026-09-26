@@ -58,6 +58,8 @@ class AppsPage extends StatelessWidget {
                               context, Icons.cloud, 'Weather', ''),
                           buttonCards.buildCardWithImagesIcon(
                               context, Icons.currency_pound, 'Stocks', ''),
+                          buttonCards.buildCardWithImagesIcon(
+                              context, Icons.map, 'Maps & Locations', ''),
                         ],
                       ),
                       const SizedBox(height: 10),

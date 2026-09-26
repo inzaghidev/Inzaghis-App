@@ -26,10 +26,26 @@ class SettingsPage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           ListTile(
-            leading: Icon(Icons.account_circle),
+            leading: Icon(Icons.hexagon_outlined),
             title: Text("Inzaghi's Group"),
             onTap: () {
               Navigator.pushNamed(context, '/inzaghis-group');
+            },
+          ),
+          const SizedBox(height: 10),
+          ListTile(
+            leading: Icon(Icons.border_color),
+            title: Text("Inzaghi's Blog"),
+            onTap: () {
+              Navigator.pushNamed(context, '/inzaghis-blog');
+            },
+          ),
+          const SizedBox(height: 10),
+          ListTile(
+            leading: Icon(Icons.mobile_friendly),
+            title: Text("Inzaghi's Media"),
+            onTap: () {
+              Navigator.pushNamed(context, '/inzaghis-media');
             },
           ),
           const SizedBox(height: 10),

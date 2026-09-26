@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inzaghi_app/pages/apps_page.dart';
 import 'package:inzaghi_app/pages/settings_page.dart';
 import 'package:inzaghi_app/widgets/navbar.dart';
+import 'package:inzaghi_app/settings/inzaghis-group.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -53,6 +54,7 @@ class _HomePageState extends State<HomePage> {
           _HomeContent(onOpenApps: () => _onDestinationSelected(1)),
           AppsPage(),
           SettingsPage(),
+          InzaghisGroup(),
         ],
       ),
       bottomNavigationBar: NavBar(
@@ -115,7 +117,7 @@ class _HomeContent extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
             Material(
               color: const Color(0xff153e75),
               borderRadius: BorderRadius.circular(20),
@@ -130,7 +132,7 @@ class _HomeContent extends StatelessWidget {
                         width: 48,
                         height: 48,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.14),
+                          color: Colors.black.withOpacity(0.14),
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: const Icon(Icons.apps_rounded,
@@ -159,6 +161,58 @@ class _HomeContent extends StatelessWidget {
                       ),
                       const Icon(Icons.arrow_forward_rounded,
                           color: Colors.white),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Material(
+              color: Color.fromRGBO(239, 231, 254, 1),
+              borderRadius: BorderRadius.circular(20),
+              child: InkWell(
+                onTap: () => Navigator.pushNamed(context, '/inzaghis-group'),
+                borderRadius: BorderRadius.circular(20),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 100,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(
+                          'assets/images/inzaghis-group-partners.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Inzaghi\'s Group',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              'Browse all available tools',
+                              style: TextStyle(
+                                  color: Color.fromRGBO(42, 38, 39, 1)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_rounded,
+                          color: Colors.black),
                     ],
                   ),
                 ),
