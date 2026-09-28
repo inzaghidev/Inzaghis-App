@@ -163,8 +163,8 @@ class AppsPage extends StatelessWidget {
                         spacing: 10,
                         runSpacing: 10,
                         children: [
-                          buttonCards.buildCardWithImagesIcon(
-                              context, Icons.calculate, 'Standard', ''),
+                          buttonCards.buildCardWithImagesIcon(context,
+                              Icons.calculate, 'Standard', '/standard-calc'),
                           buttonCards.buildCardWithImagesIcon(
                               context, Icons.science, 'Scientific', ''),
                           buttonCards.buildCardWithImagesIcon(context,

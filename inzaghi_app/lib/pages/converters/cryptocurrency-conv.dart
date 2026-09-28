@@ -42,6 +42,7 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
 
   Map<String, double> exchangeRates = {};
   String? exchangeRateError;
+  bool isLoadingRates = false;
 
   @override
   void initState() {
@@ -50,10 +51,16 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
   }
 
   Future<void> fetchExchangeRates() async {
+    setState(() {
+      isLoadingRates = true;
+      exchangeRateError = null;
+    });
+
     try {
       final response = await http
           .get(Uri.parse(
-              'https://api.coinbase.com/v2/exchange-rates?currency=BTC'))
+              'https://api.coinbase.com/v2/exchange-rates?currency=BTC'),
+              headers: const {'Accept': 'application/json'})
           .timeout(const Duration(seconds: 15));
 
       if (response.statusCode != 200) {
@@ -71,13 +78,16 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
       setState(() {
         exchangeRates = parsedRates;
         exchangeRateError = null;
+        isLoadingRates = false;
       });
-    } catch (_) {
+    } catch (error) {
       if (!mounted) return;
 
+      debugPrint('Failed to load Coinbase exchange rates: $error');
       setState(() {
         exchangeRateError =
-            'Unable to load cryptocurrency rates. Check your internet connection.';
+            'Unable to load cryptocurrency rates. Check your connection and retry.';
+        isLoadingRates = false;
       });
     }
   }
@@ -128,12 +138,28 @@ class _CryptoCurrencyConvState extends State<CryptoCurrencyConv> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20.0),
+              if (isLoadingRates)
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 16.0),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
               if (exchangeRateError != null)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
-                  child: Text(
-                    exchangeRateError!,
-                    style: const TextStyle(color: Colors.red),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          exchangeRateError!,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      ),
+                      TextButton.icon(
+                        onPressed: isLoadingRates ? null : fetchExchangeRates,
+                        icon: const Icon(Icons.refresh),
+                        label: const Text('Retry'),
+                      ),
+                    ],
                   ),
                 ),
               const Center(

@@ -8,36 +8,42 @@ class InzaghisGroup extends StatelessWidget {
       'description':
           "Inzaghi's Blog merupakan Platform Blogging sebagai tempat untuk berbagi Ilmu Pengetahuan, terutama seputar IT. Inzaghi's Blog lebih menggunakan Platform Blogger, agar lebih mudah dan praktis.",
       'image': 'assets/images/inzaghis-blog-by-inzaghis-group-corp.png',
-    },
-    {
-      'title': "Inzaghi's Sites",
-      'description':
-          "Inzaghi's Sites merupakan Platform Layanan Situs Web untuk dapat diakses ke semua layanan Inzaghi's Group. Inzaghi's Sites juga menyimpan beberapa Layanan di Inzaghi's Group seperti Inzaghi's Blog dan Inzaghi's Media (Juga Inzaghi's Dev).",
-      'image': 'assets/images/inzaghis-sites-by-inzaghis-group-corp.png',
+      'route': '/inzaghis-blog',
     },
     {
       'title': "Inzaghi's Media",
       'description':
           "Inzaghi's Media merupakan Platform Layanan untuk Sharing Ilmu, terutama seputar IT.",
       'image': 'assets/images/inzaghis-media-by-inzaghis-group-corp.png',
+      'route': '/inzaghis-media',
+    },
+    {
+      'title': "Inzaghi's Sites",
+      'description':
+          "Inzaghi's Sites merupakan Platform Layanan Situs Web untuk dapat diakses ke semua layanan Inzaghi's Group. Inzaghi's Sites juga menyimpan beberapa Layanan di Inzaghi's Group seperti Inzaghi's Blog dan Inzaghi's Media (Juga Inzaghi's Dev).",
+      'image': 'assets/images/inzaghis-sites-by-inzaghis-group-corp.png',
+      'route': '/inzaghis-sites',
     },
     {
       'title': "Inzaghi's Dev",
       'description':
           "Inzaghi's Dev merupakan kumpulan Proyek TI untuk menyimpan Kode Program seperti Website, Aplikasi Sederhana, Program-program Dasar, hingga API.",
       'image': 'assets/images/inzaghis-dev-by-inzaghis-group-corp.png',
+      'route': '/inzaghis-dev',
     },
     {
       'title': "Inzaghi's Archives",
       'description':
           "Inzaghi's Archives merupakan Pengarsipan File-file dalam bentuk Dokumen seperti Dokumen/Word (.doc), Excel (.xls), PowerPoint/Slide/Presentasi/PPT (.ppt), PDF (.pdf), dan File berbentuk Zip (.zip dan .rar).",
       'image': 'assets/images/inzaghis-archives-by-inzaghis-group-corp.png',
+      'route': '/inzaghis-archives',
     },
     {
       'title': "Inzaghi's AI",
       'description':
           "Inzaghi's AI merupakan Platform berbasis Kecerdasan Buatan (AI) yang akan tersedia di Inzaghi's Sites (Web) dan Inzaghi's App (Mobile).",
       'image': 'assets/images/inzaghis-ai-by-inzaghis-group-corp.png',
+      'route': '/inzaghis-ai',
     }
   ];
 
@@ -106,18 +112,21 @@ class InzaghisGroup extends StatelessWidget {
                           style: TextStyle(fontSize: 14),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 15),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text("Click here"),
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
+                        if (networks[index]['route'] case final route?) ...[
+                          SizedBox(height: 15),
+                          ElevatedButton(
+                            onPressed: () =>
+                                Navigator.pushNamed(context, route),
+                            child: Text("Click here"),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
                           ),
-                        )
+                        ],
                       ],
                     ),
                   ),
