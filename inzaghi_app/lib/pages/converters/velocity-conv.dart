@@ -149,6 +149,44 @@ class _VelocityConvState extends State<VelocityConv> {
                 },
                 child: const Text('Convert'),
               ),
+              const SizedBox(height: 40.0),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 17, // 85% width
+                    child: TextField(
+                      controller: outputValueController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Hasil Output',
+                      ),
+                      keyboardType: TextInputType.number,
+                      enabled: false, // Disable the text field
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 3, // 15% width
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60, // Match height of the TextField
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        velocityAbr[velocity.indexOf(selvelocityTo!)],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

@@ -7,11 +7,13 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
-const List<String> acceleration = [];
-const List<String> accelerationAbr = [];
-
-// const List<String> acceleration = ['', '', '', ''];
-// const List<String> accelerationAbr = ['', '', '', ''];
+const List<String> acceleration = [
+  'meter/second²',
+  'centimeter/second²',
+  'galileo',
+  'g-force'
+];
+const List<String> accelerationAbr = ['m/s²', 'cm/s²', 'Gal', 'g'];
 
 class AccelerationConv extends StatefulWidget {
   const AccelerationConv({super.key});
@@ -21,8 +23,8 @@ class AccelerationConv extends StatefulWidget {
 }
 
 class _AccelerationConvState extends State<AccelerationConv> {
-  String? selaccelerationFrom = ' ()';
-  String? selaccelerationTo = ' ()';
+  String? selaccelerationFrom;
+  String? selaccelerationTo;
 
   final TextEditingController inputValueController = TextEditingController();
   final TextEditingController outputValueController = TextEditingController();

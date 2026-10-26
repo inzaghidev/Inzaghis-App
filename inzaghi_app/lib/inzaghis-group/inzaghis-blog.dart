@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:inzaghi_app/widgets/embedded_web_content.dart';
+import 'package:inzaghi_app/widgets/in_app_web_page.dart';
 
 class InzaghisBlog extends StatelessWidget {
   const InzaghisBlog({super.key});
@@ -16,12 +16,7 @@ class InzaghisBlog extends StatelessWidget {
   static final Uri _miniBlogUri = Uri.parse('https://enzashorts.blogspot.com');
 
   Future<void> _openLink(BuildContext context, Uri uri) async {
-    final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
-    if (!opened && context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Unable to open this link.')),
-      );
-    }
+    await openInAppWebPage(context, uri);
   }
 
   @override
@@ -32,7 +27,7 @@ class InzaghisBlog extends StatelessWidget {
       appBar: AppBar(title: const Text("Inzaghi's Blog")),
       backgroundColor: const Color(0xFFFFF7F0),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+        padding: const EdgeInsets.fromLTRB(8, 12, 8, 28),
         children: [
           const Padding(
             padding: EdgeInsets.only(bottom: 18),
@@ -52,7 +47,7 @@ class InzaghisBlog extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: accent),
@@ -122,7 +117,7 @@ class InzaghisBlog extends StatelessWidget {
                 const SizedBox(height: 18),
                 EmbeddedWebContent(
                   uri: _legacyUri,
-                  height: 420,
+                  height: 800,
                   openExternally: () => _openLink(context, _legacyUri),
                 ),
                 const SizedBox(height: 28),
@@ -202,7 +197,7 @@ class _BlogSection extends StatelessWidget {
         const SizedBox(height: 18),
         EmbeddedWebContent(
           uri: uri,
-          height: 420,
+          height: 800,
           openExternally: onOpen,
         ),
       ],

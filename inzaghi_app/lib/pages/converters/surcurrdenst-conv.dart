@@ -7,6 +7,20 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
+const List<String> surfaceCurrentDensity = <String>[
+  'ampere/square meter (A/m²)',
+  'milliampere/square meter (mA/m²)',
+  'microampere/square meter (µA/m²)',
+  'nanoampere/square meter (nA/m²)',
+];
+
+final List<String> chargeAbr = const <String>[
+  'A/m²',
+  'mA/m²',
+  'µA/m²',
+  'nA/m²',
+];
+
 class SurfaceCurrentDensityConv extends StatefulWidget {
   const SurfaceCurrentDensityConv({super.key});
 

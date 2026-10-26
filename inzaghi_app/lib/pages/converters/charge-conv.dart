@@ -56,7 +56,7 @@ class _ChargeConvState extends State<ChargeConv> {
               const SizedBox(height: 20.0),
               const Center(
                 child: Text(
-                  "Masukkan Percepatan",
+                  "Masukkan Muatan Listrik",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black,

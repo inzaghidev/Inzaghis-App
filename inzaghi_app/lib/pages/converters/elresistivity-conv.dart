@@ -18,6 +18,12 @@ class ElectricResistivityConv extends StatefulWidget {
 class _ElectricResistivityConvState extends State<ElectricResistivityConv> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return Scaffold(
+      backgroundColor: const Color(0xFFCAE2F0),
+      appBar: AppBar(
+        title: const Text('Electric Resistivity Converter'),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }

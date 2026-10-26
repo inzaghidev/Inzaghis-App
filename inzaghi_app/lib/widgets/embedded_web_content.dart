@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -84,7 +85,14 @@ class _EmbeddedWebContentState extends State<EmbeddedWebContent> {
       height: widget.height,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(4),
-        child: WebViewWidget(controller: controller),
+        child: WebViewWidget(
+          controller: controller,
+          gestureRecognizers: const {
+            Factory<VerticalDragGestureRecognizer>(
+              VerticalDragGestureRecognizer.new,
+            ),
+          },
+        ),
       ),
     );
   }

@@ -8,10 +8,10 @@ class IconLabel {
 }
 
 const List<String> linearChargeDensity = <String>[
-  'C/m',
-  'C/km',
-  'C/ft',
-  'C/in',
+  'Columb/meter (C/m)',
+  'Columb/kilometer (C/km)',
+  'Columb/foot (C/ft)',
+  'Columb/inch (C/in)',
 ];
 
 final List<String> chargeAbr = const <String>[
@@ -50,7 +50,7 @@ class _LinearChargeDensityConvState extends State<LinearChargeDensityConv> {
               const SizedBox(height: 20.0),
               const Center(
                 child: Text(
-                  "Masukkan Percepatan",
+                  "Masukkan Kepadatan Muatan Linier",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black,

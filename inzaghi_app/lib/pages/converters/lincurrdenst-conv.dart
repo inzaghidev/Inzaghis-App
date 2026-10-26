@@ -7,6 +7,20 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
+const List<String> linearCurrentDensity = <String>[
+  'ampere/meter (A/m)',
+  'milliampere/meter (mA/m)',
+  'microampere/meter (µA/m)',
+  'nanoampere/meter (nA/m)',
+];
+
+final List<String> chargeAbr = const <String>[
+  'A/m',
+  'mA/m',
+  'µA/m',
+  'nA/m',
+];
+
 class LinearCurrentDensityConv extends StatefulWidget {
   const LinearCurrentDensityConv({super.key});
 

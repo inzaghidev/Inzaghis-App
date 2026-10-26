@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:inzaghi_app/widgets/embedded_web_content.dart';
+import 'package:inzaghi_app/widgets/in_app_web_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InzaghisMedia extends StatelessWidget {
   const InzaghisMedia({super.key});
@@ -21,7 +22,7 @@ class InzaghisMedia extends StatelessWidget {
       widgetClass: 'sk-instagram-feed',
       embedId: '25485818',
       widgetPath: 'instagram-feed',
-      height: 520,
+      height: 600,
     ),
     _SocialNetwork(
       name: 'TikTok',
@@ -33,7 +34,7 @@ class InzaghisMedia extends StatelessWidget {
       widgetClass: 'sk-tiktok-feed',
       embedId: '25485777',
       widgetPath: 'tiktok-feed',
-      height: 600,
+      height: 800,
     ),
     _SocialNetwork(
       name: 'YouTube',
@@ -45,7 +46,7 @@ class InzaghisMedia extends StatelessWidget {
       widgetClass: 'sk-ww-youtube-channel-videos',
       embedId: '25676479',
       widgetPath: 'youtube-channel-videos',
-      height: 520,
+      height: 600,
     ),
     _SocialNetwork(
       name: 'Twitter/X',
@@ -57,7 +58,7 @@ class InzaghisMedia extends StatelessWidget {
       widgetClass: 'sk-ww-twitter-feed',
       embedId: '25676338',
       widgetPath: 'twitter-feed',
-      height: 520,
+      height: 600,
     ),
     _SocialNetwork(
       name: 'Threads',
@@ -69,11 +70,15 @@ class InzaghisMedia extends StatelessWidget {
       widgetClass: 'sk-ww-threads-posts',
       embedId: '25676359',
       widgetPath: 'threads-posts',
-      height: 520,
+      height: 600,
     ),
   ];
 
   Future<void> _openLink(BuildContext context, Uri uri) async {
+    await openInAppWebPage(context, uri);
+  }
+
+  Future<void> _openSocialLink(BuildContext context, Uri uri) async {
     final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
     if (!opened && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -88,7 +93,7 @@ class InzaghisMedia extends StatelessWidget {
       appBar: AppBar(title: const Text("Inzaghi's Media")),
       backgroundColor: const Color(0xFFFFF1F1),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+        padding: const EdgeInsets.fromLTRB(8, 12, 8, 28),
         children: [
           const Padding(
             padding: EdgeInsets.only(bottom: 18),
@@ -108,7 +113,7 @@ class InzaghisMedia extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: const Color(0xFFFF7474)),
@@ -138,7 +143,7 @@ class InzaghisMedia extends StatelessWidget {
                   (network) => [
                     _SocialChannel(
                       network: network,
-                      onOpen: (uri) => _openLink(context, uri),
+                      onOpen: (uri) => _openSocialLink(context, uri),
                     ),
                     const SizedBox(height: 28),
                   ],
@@ -187,25 +192,27 @@ class _SocialChannel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Wrap(
-          alignment: WrapAlignment.spaceBetween,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          runSpacing: 8,
+        Row(
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SvgPicture.asset(network.icon, width: 44, height: 44),
-                const SizedBox(width: 12),
-                Text(
-                  network.name,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF34445C),
+            Expanded(
+              child: Row(
+                children: [
+                  SvgPicture.asset(network.icon, width: 44, height: 44),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      network.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF34445C),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             TextButton(
               onPressed: () => onOpen(network.profile),

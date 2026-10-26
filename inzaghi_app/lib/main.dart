@@ -36,6 +36,7 @@ import 'package:inzaghi_app/pages/converters/velocity-conv.dart';
 import 'package:inzaghi_app/pages/converters/acceleration-conv.dart';
 import 'package:inzaghi_app/pages/converters/density-conv.dart';
 import 'package:inzaghi_app/pages/converters/momentinertia-conv.dart';
+import 'package:inzaghi_app/pages/converters/torque-conv.dart';
 
 //Electricity Converters :
 import 'package:inzaghi_app/pages/converters/charge-conv.dart';
@@ -50,9 +51,20 @@ import 'package:inzaghi_app/pages/converters/elfieldstrength-conv.dart';
 import 'package:inzaghi_app/pages/converters/elpotential-conv.dart';
 import 'package:inzaghi_app/pages/converters/elresistance-conv.dart';
 import 'package:inzaghi_app/pages/converters/elresistivity-conv.dart';
+import 'package:inzaghi_app/pages/converters/elonductance-conv.dart';
+import 'package:inzaghi_app/pages/converters/elconsuctivity-conv.dart';
+import 'package:inzaghi_app/pages/converters/elonductance-conv.dart';
+import 'package:inzaghi_app/pages/converters/elconsuctivity-conv.dart';
+import 'package:inzaghi_app/pages/converters/eltrocaptance-conv.dart';
+import 'package:inzaghi_app/pages/converters/inductance-conv.dart';
 
-//import 'package:inzaghi_app/pages/converters/elonductance-conv.dart';
-//import 'package:inzaghi_app/pages/converters/elconsuctivity-conv.dart';
+//Fluid Converters :
+//import 'package:inzaghi_app/pages/converters/flow-conv.dart';
+//import 'package:inzaghi_app/pages/converters/flow-mass-conv.dart';
+//import 'package:inzaghi_app/pages/converters/flow-molar-conv.dart';
+//import 'package:inzaghi_app/pages/converters/mass-flux-dens-conv.dart';
+
+//Heat Converters :
 
 //=============================================================
 
@@ -120,6 +132,7 @@ class MyApp extends StatelessWidget {
         '/acceleration-conv': (context) => AccelerationConv(),
         '/density-conv': (context) => DensityConv(),
         '/momentinertia-conv': (context) => MomentInertiaConv(),
+        '/torque-conv': (context) => TorqueConv(),
 
         //Electricity Converters :
         '/charge-conv': (context) => ChargeConv(),
@@ -134,8 +147,18 @@ class MyApp extends StatelessWidget {
         '/elpotential-conv': (context) => ElectricPotentialConv(),
         '/elresistance-conv': (context) => ElectricResistanceConv(),
         '/elresistivity-conv': (context) => ElectricResistivityConv(),
-        // '/elonductance-conv': (context) => ElectricConductanceConv(),
-        // '/elconsuctivity-conv': (context) => ElectricConductivityConv(),
+        '/elonductance-conv': (context) => ElectricConductanceConv(),
+        '/elconsuctivity-conv': (context) => ElectricConductivityConv(),
+        '/eltrocaptance-conv': (context) => ElectrostaticCapacitanceConv(),
+        '/inductance-conv': (context) => InductanceConv(),
+
+        //Fluid Converters :
+        // '/flow-conv': (context) => FlowConv(),
+        // '/flow-mass-conv': (context) => FlowMassConv(),
+        // '/flow-molar-conv': (context) => FlowMolarConv(),
+        // '/mass-flux-dens-conv': (context) => MassFluxDensityConv(),
+
+        //Heat Converters :
 
         //======================================================
 

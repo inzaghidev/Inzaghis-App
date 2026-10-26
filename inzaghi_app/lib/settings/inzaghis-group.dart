@@ -1,5 +1,6 @@
 // about_page.dart
 import 'package:flutter/material.dart';
+import 'package:inzaghi_app/widgets/in_app_web_page.dart';
 
 class InzaghisGroup extends StatelessWidget {
   final List<Map<String, String>> networks = [
@@ -22,30 +23,34 @@ class InzaghisGroup extends StatelessWidget {
       'description':
           "Inzaghi's Sites merupakan Platform Layanan Situs Web untuk dapat diakses ke semua layanan Inzaghi's Group. Inzaghi's Sites juga menyimpan beberapa Layanan di Inzaghi's Group seperti Inzaghi's Blog dan Inzaghi's Media (Juga Inzaghi's Dev).",
       'image': 'assets/images/inzaghis-sites-by-inzaghis-group-corp.png',
-      'route': '/inzaghis-sites',
+      'url': 'https://inzaghi.wuaze.com',
     },
     {
       'title': "Inzaghi's Dev",
       'description':
           "Inzaghi's Dev merupakan kumpulan Proyek TI untuk menyimpan Kode Program seperti Website, Aplikasi Sederhana, Program-program Dasar, hingga API.",
       'image': 'assets/images/inzaghis-dev-by-inzaghis-group-corp.png',
-      'route': '/inzaghis-dev',
+      'url': 'https://inzaghi.wuaze.com/inzaghis-group/inzaghis-dev.php',
     },
     {
       'title': "Inzaghi's Archives",
       'description':
           "Inzaghi's Archives merupakan Pengarsipan File-file dalam bentuk Dokumen seperti Dokumen/Word (.doc), Excel (.xls), PowerPoint/Slide/Presentasi/PPT (.ppt), PDF (.pdf), dan File berbentuk Zip (.zip dan .rar).",
       'image': 'assets/images/inzaghis-archives-by-inzaghis-group-corp.png',
-      'route': '/inzaghis-archives',
+      'url': 'https://inzaghi.wuaze.com/inzaghis-group/inzaghis-archives.php',
     },
     {
       'title': "Inzaghi's AI",
       'description':
           "Inzaghi's AI merupakan Platform berbasis Kecerdasan Buatan (AI) yang akan tersedia di Inzaghi's Sites (Web) dan Inzaghi's App (Mobile).",
       'image': 'assets/images/inzaghis-ai-by-inzaghis-group-corp.png',
-      'route': '/inzaghis-ai',
+      'url': 'https://inzaghi.wuaze.com/inzaghis-group/inzaghis-ai.php',
     }
   ];
+
+  Future<void> _openLink(BuildContext context, String url) async {
+    await openInAppWebPage(context, Uri.parse(url));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +122,19 @@ class InzaghisGroup extends StatelessWidget {
                           ElevatedButton(
                             onPressed: () =>
                                 Navigator.pushNamed(context, route),
+                            child: Text("Click here"),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                          ),
+                        ] else if (networks[index]['url'] case final url?) ...[
+                          SizedBox(height: 15),
+                          ElevatedButton(
+                            onPressed: () => _openLink(context, url),
                             child: Text("Click here"),
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(

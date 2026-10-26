@@ -7,6 +7,12 @@ class IconLabel {
   const IconLabel(this.label, this.icon);
 }
 
+const List<String> current = [];
+const List<String> currentAbr = [];
+
+// const List<String> density = ['', '', '', ''];
+// const List<String> densityAbr = ['', '', '', ''];
+
 class CurrentConv extends StatefulWidget {
   const CurrentConv({super.key});
 

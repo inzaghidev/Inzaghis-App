@@ -70,6 +70,7 @@ class ConvertersPage extends StatelessWidget {
     'assets/icons/acceleration-physics-symbol.png',
     Icons.density_small,
     'assets/icons/inertia-gyroscope-icon.png',
+    Icons.settings_input_component_rounded,
   ];
 
   final List<String> titleEngerConvList = [
@@ -77,6 +78,7 @@ class ConvertersPage extends StatelessWidget {
     'Acceleration',
     'Density',
     'Moment of Inertia',
+    'Torque',
   ];
 
   final List<String> routeEngerConvList = [
@@ -84,6 +86,7 @@ class ConvertersPage extends StatelessWidget {
     '/acceleration-conv',
     '/density-conv',
     '/momentinertia-conv',
+    '/torque-conv',
   ];
 
   final List<dynamic> iconElectryConvList = [
@@ -99,9 +102,9 @@ class ConvertersPage extends StatelessWidget {
     Icons.electric_bolt,
     Icons.electric_bolt,
     Icons.power_outlined,
-    Icons.abc,
-    Icons.abc,
-    Icons.abc,
+    Icons.power_outlined,
+    Icons.electric_bolt,
+    Icons.electric_bolt,
     Icons.abc,
     Icons.abc,
   ];
@@ -122,8 +125,8 @@ class ConvertersPage extends StatelessWidget {
     'Electric Resistivity',
     'Electric Conductance',
     'Electric Conductivity',
-    'App',
-    'App',
+    'Electrostatic Capacitance',
+    'Inductance Converter',
   ];
 
   final List<String> routeElectryConvList = [
@@ -142,11 +145,16 @@ class ConvertersPage extends StatelessWidget {
     '/elresistivity-conv',
     '/elonductance-conv',
     '/elconsuctivity-conv',
-    '/app-conv',
-    '/app-conv',
+    '/eltrocaptance-conv',
+    '/inductance-conv',
   ];
 
   final List<dynamic> iconFluidConvList = [
+    Icons.water_drop,
+    Icons.scale,
+    Icons.science,
+    Icons.abc,
+    Icons.abc,
     Icons.abc,
     Icons.abc,
     Icons.abc,
@@ -155,6 +163,11 @@ class ConvertersPage extends StatelessWidget {
   ];
 
   final List<String> titleFluidConvList = [
+    'Flow Converter',
+    'Flow Converter (Mass)',
+    'Flow Converter (Molar)',
+    'Mass Flux Density Converter',
+    'App',
     'App',
     'App',
     'App',
@@ -163,6 +176,11 @@ class ConvertersPage extends StatelessWidget {
   ];
 
   final List<String> routeFluidConvList = [
+    '/flow-conv',
+    '/flow-mass-conv',
+    '/flow-molar-conv',
+    '/mass-flux-dens-conv',
+    '/app-conv',
     '/app-conv',
     '/app-conv',
     '/app-conv',
@@ -206,6 +224,54 @@ class ConvertersPage extends StatelessWidget {
   ];
 
   final List<String> routeLightConvList = [
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+  ];
+
+  final List<dynamic> iconMagnetismConvList = [
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+  ];
+
+  final List<String> titleMagnetismConvList = [
+    'App',
+    'App',
+    'App',
+    'App',
+    'App',
+  ];
+
+  final List<String> routeMagnetismConvList = [
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+    '/app-conv',
+  ];
+
+  final List<dynamic> iconRadiologyConvList = [
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+    Icons.abc,
+  ];
+
+  final List<String> titleRadiologyConvList = [
+    'App',
+    'App',
+    'App',
+    'App',
+    'App',
+  ];
+
+  final List<String> routeRadiologyConvList = [
+    '/app-conv',
     '/app-conv',
     '/app-conv',
     '/app-conv',
@@ -453,7 +519,101 @@ class ConvertersPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      // Add widgets or cards for advanced converters here
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: 10,
+                        runSpacing: 10,
+                        children:
+                            List.generate(iconLightConvList.length, (index) {
+                          return buttonCards.buildCardWithImagesIcon(
+                            context,
+                            iconLightConvList[index],
+                            titleLightConvList[index],
+                            routeLightConvList[index],
+                          );
+                        }),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              Card(
+                margin: const EdgeInsets.all(10),
+                color: Colors.white54,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  margin: const EdgeInsets.only(
+                      left: 10, right: 10, top: 10, bottom: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Magnetism Converters',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: List.generate(iconMagnetismConvList.length,
+                            (index) {
+                          return buttonCards.buildCardWithImagesIcon(
+                            context,
+                            iconMagnetismConvList[index],
+                            titleMagnetismConvList[index],
+                            routeMagnetismConvList[index],
+                          );
+                        }),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              Card(
+                margin: const EdgeInsets.all(10),
+                color: Colors.white54,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  margin: const EdgeInsets.only(
+                      left: 10, right: 10, top: 10, bottom: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Radiology Converters',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: List.generate(iconRadiologyConvList.length,
+                            (index) {
+                          return buttonCards.buildCardWithImagesIcon(
+                            context,
+                            iconRadiologyConvList[index],
+                            titleRadiologyConvList[index],
+                            routeRadiologyConvList[index],
+                          );
+                        }),
+                      ),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 ),

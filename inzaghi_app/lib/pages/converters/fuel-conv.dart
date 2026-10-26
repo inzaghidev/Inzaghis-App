@@ -33,10 +33,27 @@ class _FuelConvState extends State<FuelConv> {
   final TextEditingController outputValueController = TextEditingController();
 
   void convert() {
-    // Implement conversion logic here
-    // For demonstration, we just set the output to the same as input
+    double input = double.tryParse(inputValueController.text) ?? 0.0;
+    double factorFrom = 1.0; // Conversion factor for the "from" unit
+    double factorTo = 1.0; // Conversion factor for the "to" unit
+
+    // Example conversion factors (replace with actual values)
+    if (selfuelsFrom == 'Meter/Liter (m/L)') {
+      factorFrom = 1.0;
+    } else if (selfuelsFrom == 'Kilometer/Liter (km/L)') {
+      factorFrom = 1000.0;
+    }
+
+    if (selfuelsTo == 'Meter/Liter (m/L)') {
+      factorTo = 1.0;
+    } else if (selfuelsTo == 'Kilometer/Liter (km/L)') {
+      factorTo = 1000.0;
+    }
+
+    double output = input * factorFrom / factorTo;
+
     setState(() {
-      outputValueController.text = inputValueController.text;
+      outputValueController.text = output.toStringAsFixed(2);
     });
   }
 

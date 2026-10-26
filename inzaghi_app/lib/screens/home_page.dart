@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:inzaghi_app/pages/apps_page.dart';
 import 'package:inzaghi_app/pages/settings_page.dart';
 import 'package:inzaghi_app/widgets/navbar.dart';
-import 'package:inzaghi_app/settings/inzaghis-group.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,10 +21,10 @@ class _HomePageState extends State<HomePage> {
   }
 
 // Smoother page transition when tapping on the bottom navigation bar
-  void _onDestinationSelected(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+void _onDestinationSelected(int index) {
+  setState(() {
+    _selectedIndex = index;
+  });
     _pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 360),
@@ -54,7 +53,6 @@ class _HomePageState extends State<HomePage> {
           _HomeContent(onOpenApps: () => _onDestinationSelected(1)),
           AppsPage(),
           SettingsPage(),
-          InzaghisGroup(),
         ],
       ),
       bottomNavigationBar: NavBar(
